@@ -16,7 +16,7 @@ class Board(object):
     def __str__(self):
         """Nicely prints the current board.
 
-        >>> from player import Player
+        >>> from tictactoe.player import Player
         >>> b = Board(3, 3, [Player('Leia', 'x')])
         >>> b.grid[1][1] = 0  # player number 0
         >>> print(b)
@@ -58,7 +58,7 @@ class Board(object):
         """
 
         if not 1 <= position <= self.width * self.height:
-            raise ValueError("Position '{}' out of range.".format(position))
+            raise ValueError("Position '{}' is out of range.".format(position))
         y = (position - 1) // self.height
         x = (position - 1) % self.width
         if self.grid[y][x] is not None:

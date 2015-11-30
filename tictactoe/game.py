@@ -1,8 +1,26 @@
+"""Module implementig game logic."""
+
 from tictactoe import player, board, ioutil
 
 
 class Game(object):
+    """Implementation of a complete game of Tic Tac Toe."""
+
     def __init__(self, num_of_players, width, height):
+        """Construct a game.
+
+        :param int num_of_players: Number of players.
+        :param int width: width of the field
+        :param int height: height of the field
+
+        >>> g = Game(5, 3, 3)
+        >>> g.num_of_players
+        5
+        >>> g.width
+        3
+        >>> g.height
+        3
+        """
         self.board = None
         self.width = width
         self.height = height
@@ -12,12 +30,23 @@ class Game(object):
         self.on_turn = 0
 
     def setup(self):
+        """Performs game setup.
+
+        This function repeatedly asks for ``num_of_players`` player names and
+        their symbols. In further development, more setup tasks may be performed
+        here.
+        """
         for i in range(self.num_of_players):
             name = ioutil.get_player_name(i+1)
             symb = ioutil.get_player_symbol(input, i+1)
             self.players.append(player.Player(name, symb))
 
     def play_round(self):
+        """Plays one round of a game.
+
+        A round start with an empty board and players make their moves in turn,
+        until one is victorious or the board is filled.
+        """
         self.board = board.Board(self.width, self.height, self.players)
         self.round_counter += 1
         while True:
@@ -45,6 +74,12 @@ class Game(object):
             self.on_turn %= self.num_of_players
 
     def mainloop(self):
+        """Runs the whole game.
+
+        First :func:`setup` is called. Then :func:`play_round` is called
+        indefinitely, until player does not want another round. After that,
+        :func:`goodbye` is called.
+        """
         self.setup()
         while True:
             self.play_round()
@@ -54,9 +89,14 @@ class Game(object):
                 return
 
     def goodbye(self):
-            print("Thank you for playing.")
+        """Post game cleanup.
+
+        Now it only prints a goodbye message, but work could be done here if
+        needed lateer on.
+        """
+        print("Thank you for playing.")
 
 
 if __name__ == '__main__':
-    g = Game(2, 3, 3)
-    g.mainloop()
+    import doctest
+    doctest.testmod()
