@@ -51,7 +51,8 @@ coverage.xml
 *.log
 
 # Sphinx documentation
-docs/_build/
+_build/
+*.bat
 
 # Pycharm
 .idea/
