@@ -5,6 +5,7 @@ class BoardTest(unittest.TestCase):
     """Test Board functionality."""
 
     def setUp(self):
+        """Set up a sample board."""
         self.width = 3
         self.height = 3
         self.players = [player.Player('Luke', 'x'), player.Player('Leia', 'o')]
@@ -13,6 +14,7 @@ class BoardTest(unittest.TestCase):
                             (0, -1),  (1, -1),  (1, 0), (1, 1)]
 
     def test_init(self):
+        """Check board initialization."""
         self.assertEqual(self.board.height, self.height)
         self.assertEqual(self.board.width, self.width)
         self.assertEqual(self.board.players, self.players)
@@ -21,6 +23,7 @@ class BoardTest(unittest.TestCase):
         self.assertEqual(self.board.grid, [[None] * self.width] * self.height)
 
     def test_set(self):
+        """Test setting symbols on board."""
         self.board.set(1, 1)
         self.assertEqual(self.board.grid[0][0], 1)  # this one is set
         for i in range(self.width):                 # and the others are not

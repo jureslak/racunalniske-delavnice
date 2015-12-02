@@ -49,6 +49,8 @@ def get_bool(msg, accepted=None, rejected=None):
     Default values for ``accepted`` are ``{'y', 'yes', 'Y'}`` and for
     ``rejected`` are ``{'n', 'no', 'N'}``. If you wish to make one of the values
     default, specify an empty string as an accepted or rejected value.
+    The ``rejected`` and ``accepted`` sequences should be disjoint, otherwise
+    behaviour is implementation defined.
 
     :param str msg: Message to prompt the user.
     :param accepted: If user inputs any of items in this iterable, the
