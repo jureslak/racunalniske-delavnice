@@ -9,6 +9,10 @@ Tic Tac Toe documentation!
 
 Play a simple **interactive** hotseat game of Tic Tac Toe:
 
+.. warning::
+
+  This game is highly addictive and intelectually challenging.
+
 .. code:: python
 
 	>>> from tictactoe import game
