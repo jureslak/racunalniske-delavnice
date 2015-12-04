@@ -50,8 +50,8 @@ if ((err = SSLHashSHA1.final(&hashCtx, &hashOut)) != 0)
 ```
 * Heartbleed: buffer overflow
 * Shellshock: evaluating user input
-* Nasa: spacecraft crashes to Mars, because a tem used imperial units (of course).
-* Nasa #2: a spacecraft gets
+* Nasa: spacecraft crashes to Mars, because a team used imperial units (of course).
+* Nasa #2: a spacecraft gets shut down over Atlantic ocean -- wrong formula
 * Gas pipeline explosion in Russia
 * North American blackout: race condition -- hard bugs, Heisenbug :)
 * US army: patriot missile
@@ -65,7 +65,7 @@ what they are supposed to.
 Such tests are called **unit tests**, because they test a single unit.
 
 ### Task 2
-Create a `sample/` folder and write a `to_binary` function, that
+Go to  `samples/` folder and write a `to_binary` function, that
 converts an integer to a binary string.
 
 Unit tests in python are written using the built in `unittest` package. Usually
@@ -214,9 +214,24 @@ Sphinx is very powerful: it uses reST syntax and supports
 * Automatic docs generation
 * HTML and PDF output
 
+## Style checking
+Consistency is important. Style checkers assure that, and the guard from errors.
+Python code usually follows [PEP8](https://www.python.org/dev/peps/pep-0008/).
+
+### Task 7
+Run
+```
+pylint tictactoe/
+```
+and look at the results. Fix some of them.
+
 ### Final task
 Update the package so that Players keep scores after multiple rounds. Print
-them after every round. Write tests and documentation for them.
+them after every round. Write tests and documentation for your code.
+
+## Conclusion
+If there is some time left, we will look at the `setup.py` script and `requrements.txt` file. Maybe
+also `virtualenv`.
 
 FMF, 4. dec 2015
 
