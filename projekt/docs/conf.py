@@ -39,9 +39,16 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
 ]
-
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# Doctests setup
+doctest_global_setup = ('from tictactoe.game import *\n'
+                        'from tictactoe.board import *\n'
+                        'from tictactoe.player import *\n'
+                        'from tictactoe.ioutil import *\n'
+                        'from tictactoe import game, board, player, ioutil\n'
+                        'import tictactoe')
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:

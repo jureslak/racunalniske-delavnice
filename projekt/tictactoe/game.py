@@ -10,8 +10,8 @@ class Game(object):
         """Construct a game.
 
         :param int num_of_players: Number of players.
-        :param int width: width of the field
-        :param int height: height of the field
+        :param int width: Width of the field.
+        :param int height: Height of the field.
 
         >>> g = Game(5, 3, 3)
         >>> g.num_of_players
@@ -59,7 +59,7 @@ class Game(object):
                     self.board.set(position, self.on_turn)
                     break
                 except ValueError:
-                    print('Position {} invalid.')
+                    print('Position {} invalid.'.format(position))
 
             outcome, winner = self.board.finished()
             if outcome:
