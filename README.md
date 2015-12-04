@@ -28,7 +28,7 @@ read ---> {write, test, doc} ---> review ---> test ---> commit ---> fix
 ```
 
 ### Task 1
-If we are all excellent developer that make 3 bug per month, how often is
+If we are all excellent developers that make 1 bug per month, how often is
 something broken?
 
 ## Testing
