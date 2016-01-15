@@ -9,7 +9,7 @@ typing their names in the command line.
 
 Clone this repository to your `U:` drive.
 ```
-https://github.com/jureslak/racunalniske-delavnice.git
+git clone https://github.com/jureslak/racunalniske-delavnice.git
 ```
 You do not need to look at anything yet, *especially not the solutions*. Those
 are there only in case you get lost along the way.
