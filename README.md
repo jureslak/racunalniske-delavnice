@@ -120,7 +120,9 @@ We use **mocks**, objects that mock the other side.
 Now, look at the file `project/tictactoe/ioutil.py` and the corresponding test file.
 
 ### Task 4
-Test the output that user sees in `get_player_symbol` function as well.
+Write your own function `get_number` that begs the 
+user for a number, unit he inputs one.
+Test the function as well as the output that user sees.
 *Hint:* you may need `StringIO` from `io` module to simulate an
 output stream.
 
@@ -167,6 +169,7 @@ def function(x):
     """Just like this."""
 	pass
 ```
+
 Hmm, we would like some documentation. Docstrings look promising.
 
 ### Task 5
@@ -228,6 +231,14 @@ and look at the results. Fix some of them.
 ### Final task
 Update the package so that Players keep scores after multiple rounds. Print
 them after every round. Write tests and documentation for your code.
+
+If you need a bigger challenge, implement a joker. Each player
+has one joker, that he can use to make a move anytime, without paying respect 
+to game order. Test and document all added features.
+
+If you need an even greater challenge, make a game multiplayer, 
+by connecting more instances via sockets to a common 'server' where the game 
+is acually played. Test and document all added features.
 
 ## Conclusion
 If there is some time left, we will look at the `setup.py` script and `requrements.txt` file. Maybe
