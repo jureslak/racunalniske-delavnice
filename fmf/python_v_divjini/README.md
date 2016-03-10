@@ -9,7 +9,7 @@ typing their names in the command line.
 
 Clone this repository to your `U:` drive.
 ```
-https://github.com/jureslak/racunalniske-delavnice.git
+git clone https://github.com/jureslak/racunalniske-delavnice.git
 ```
 You do not need to look at anything yet, *especially not the solutions*. Those
 are there only in case you get lost along the way.
@@ -28,7 +28,7 @@ read ---> {write, test, doc} ---> review ---> test ---> commit ---> fix
 ```
 
 ### Task 1
-If we are all excellent developer that make 3 bug per month, how often is
+If we are all excellent developers that make 1 bug per month, how often is
 something broken?
 
 ## Testing
@@ -65,8 +65,8 @@ what they are supposed to.
 Such tests are called **unit tests**, because they test a single unit.
 
 ### Task 2
-Go to  `samples/` folder, create a `binary.py` file and write a `to_binary` function,
- that converts an integer to a binary string.
+Go to  `samples/` folder and write a `to_binary` function, that
+converts an integer to a binary string.
 
 Unit tests in python are written using the built in `unittest` package. Usually
 every `something.py` file is accompanied by a `test_something.py` file that
@@ -120,7 +120,9 @@ We use **mocks**, objects that mock the other side.
 Now, look at the file `project/tictactoe/ioutil.py` and the corresponding test file.
 
 ### Task 4
-Test the output that user sees in `get_player_symbol` function as well.
+Write your own function `get_number` that begs the
+user for a number, unit he inputs one.
+Test the function as well as the output that user sees.
 *Hint:* you may need `StringIO` from `io` module to simulate an
 output stream.
 
@@ -167,6 +169,7 @@ def function(x):
     """Just like this."""
 	pass
 ```
+
 Hmm, we would like some documentation. Docstrings look promising.
 
 ### Task 5
@@ -228,6 +231,14 @@ and look at the results. Fix some of them.
 ### Final task
 Update the package so that Players keep scores after multiple rounds. Print
 them after every round. Write tests and documentation for your code.
+
+If you need a bigger challenge, implement a joker. Each player
+has one joker, that he can use to make a move anytime, without paying respect
+to game order. Test and document all added features.
+
+If you need an even greater challenge, make a game multiplayer,
+by connecting more instances via sockets to a common 'server' where the game
+is acually played. Test and document all added features.
 
 ## Conclusion
 If there is some time left, we will look at the `setup.py` script and `requrements.txt` file. Maybe
