@@ -65,8 +65,8 @@ what they are supposed to.
 Such tests are called **unit tests**, because they test a single unit.
 
 ### Task 2
-Go to  `samples/` folder and write a `to_binary` function, that
-converts an integer to a binary string.
+Go to  `samples/` folder, create a `binary.py` file and write a `to_binary` function,
+ that converts an integer to a binary string.
 
 Unit tests in python are written using the built in `unittest` package. Usually
 every `something.py` file is accompanied by a `test_something.py` file that
