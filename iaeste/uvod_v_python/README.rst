@@ -7,6 +7,7 @@ Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnove
 3, na voljo na https://www.python.org/downloads/.
 
 Dokumentacija je na voljo na https://docs.python.org/3.5/.
+
 Osnove
 ======
 
@@ -223,10 +224,8 @@ Primer neskončne zanke:
       print(x)
       x = x + 1
 
-.. HINT::
-
-  Če se kdaj zataknete v neskončno zanko, pritisnite ``CTRL + c``, ki prekine
-  trenutno izvajani program.
+Če se kdaj zataknete v neskončno zanko, pritisnite ``CTRL + c``, ki prekine
+trenutno izvajani program.
 
 For zanka
 ~~~~~~~~~
@@ -267,24 +266,23 @@ Bolj kompliciran primer:
   verses.
   """
 
-  if __name__ == '__main__':
-      for i in range(100):
-          bottle_num = 99 - i
-          song = ("{0} bottles of beer on the wall, {0} bottles of beer.\n" +
-                  "Take one down, pass it around, {1} bottles of beer on the " +
-                  "wall ...\n")
-          song_one = ("1 bottle of beer on the wall, 1 bottle of beer.\n" +
-                      "Take it down, pass it around, there are no bottles " +
-                      "left on the wall ...\n")
-          song_no = ("No more bottles of beer on the wall, no more bottles of " +
-                     "beer.\nGo to the store and buy us some more, 99 bottles " +
-                     "of beer on the wall ...\n")
-          if i == 99:
-              print(song_no)
-          elif i == 98:
-              print(song_one)
-          else:
-              print(song.format(bottle_num, bottle_num - 1))
+  for i in range(100):
+      bottle_num = 99 - i
+      song = ("{0} bottles of beer on the wall, {0} bottles of beer.\n" +
+              "Take one down, pass it around, {1} bottles of beer on the " +
+              "wall ...\n")
+      song_one = ("1 bottle of beer on the wall, 1 bottle of beer.\n" +
+                  "Take it down, pass it around, there are no bottles " +
+                  "left on the wall ...\n")
+      song_no = ("No more bottles of beer on the wall, no more bottles of " +
+                 "beer.\nGo to the store and buy us some more, 99 bottles " +
+                 "of beer on the wall ...\n")
+      if i == 99:
+          print(song_no)
+      elif i == 98:
+          print(song_one)
+      else:
+          print(song.format(bottle_num, bottle_num - 1))
 Break
 ~~~~~
 
@@ -1504,6 +1502,37 @@ pisanjem lahko namesto ``input`` in ``print`` uporabimo "datoteki"
 zapirati, podpirata pa običajne metode za branje in pisanje. Če želite to
 uporabljati, ne pozabite na začetku programa dodati ``import sys``, da boste
 imeli dostop do teh dveh objektov.
+
+Naključna števila
+=================
+
+Psevdonaključna števila dobimo z uporabo modula ``random``.
+Če želimo uporabljat te funkcije moramo na začetku datoteke dodati stavek
+
+.. code::
+
+  import random
+
+Lahko dobimo naključna cela števila, naključno decimalno število iz znanih
+zveznih porazdelitev, naključno izbiro iz seznama ...
+
+.. code::
+
+  random.randint(a, b)
+
+Vrne naključno celo število na intervalu ``[a, b]``.
+
+.. code::
+
+  random.gauss(mu, sigma)
+
+Vrne naključno število iz Gaussove porazdelitve.
+
+.. code::
+
+  random.choice(seznam)
+
+Vrne naključni element seznama.
 
 .. vim: spell spelllang=sl
 Jure Slak
