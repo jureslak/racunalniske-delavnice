@@ -3,10 +3,10 @@ Delavnica Uvod v Python
 
 Izvedena v okviru Iaeste, 10. 3. 2016 ob 17.00 v II/3B na Fakulteti za strojništvo.
 
-Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnovejša verzija `Python
-3<https://www.python.org/downloads/>`_.
+Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnovejša verzija Python
+3, na voljo na https://www.python.org/downloads/.
 
-Dokumentacija je na voljo `tukaj<https://docs.python.org/3.4/library/stdtypes.html>`_.
+Dokumentacija je na voljo na https://docs.python.org/3.5/.
 Osnove
 ======
 
@@ -345,8 +345,8 @@ Podatkovni tipi
 
 V tem poglavju bomo predstavili podatkovne tipe, kaj so in zakaj so pomembni,
 kako jih uporabljamo in kateri obstajajo. Nekatere si bomo tudi podrobneje
-ogledali. Bolj obsežno (in pravilno) dokumentacijo najdete `tukaj
-<https://docs.python.org/3.5/library/stdtypes.html>`_.
+ogledali. Bolj obsežno (in pravilno) dokumentacijo najdete na
+https://docs.python.org/3.5/library/stdtypes.html.
 
 Uvod
 ----
@@ -1080,8 +1080,8 @@ Bolj napreden primer:
 Zaključek: stvari, ki jih počenemo v funkciji ne spreminjajo zunanjega sveta,
 kot se od funkcij tudi pričakuje.
 
-Za zelo podrobno razlago scopinga v Pythonu kliknite
-`tukaj <http://nbviewer.ipython.org/github/rasbt/python_reference/blob/master/tutorials/scope_resolution_legb_rule.ipynb>`_.
+Za zelo podrobno razlago scopinga v Pythonu kliknite na
+http://nbviewer.ipython.org/github/rasbt/python_reference/blob/master/tutorials/scope_resolution_legb_rule.ipynb
 
 Razredi
 -------
@@ -1225,8 +1225,8 @@ Lepo je pisati na primer ``3 + 4``, namesto ``add(3, 4)``. Enako funkcionalnost
 lahko dodamo tudi svojim tipom, z definicijo novih operatorjev. Nove operatorje
 definiramo tako, da definiramo metode s posebnimi imeni, npr. ``__add__`` za
 seštevanje ali ``__mul__`` za množenje. Seznam vseh takih metod najdete, če
-napišete npr. ``dir(int)``, še bolj popoln seznam pa najdete `tukaj
-<https://docs.python.org/3.4/reference/datamodel.html>`_.
+napišete npr. ``dir(int)``, še bolj popoln seznam pa najdete na
+https://docs.python.org/3.4/reference/datamodel.html.
 Definiranje svojega obnašanja operatorjev imenujemo *operator overloading*.
 Overloadati se da vse, kar obstaja. Za primer naredimo razred ``Vector``,
 ki predstavlja vektor v :math:`\mathbb{R}^3`, ki ga lahko množimo s skalarjem, skalarno
@@ -1307,13 +1307,13 @@ vrže izjemo. Odpiranje samo pripravi datoteko za operacije na njej in ne naredi
 Najde datoteko in vrne objekt za delo z njo. Kaj lahko počne je odvisno od
 ``načina``, ki je ``r`` za branje, ``w`` za pisanje, ``+`` za branje in
 pisanje ter ``a`` za dodajanje. Kratice pomenijo *read*, *write* in *append*.
-Bolj natančno dokumentacijo najdete `tukaj
-<https://docs.python.org/3.4/library/functions.html#open>`_. Na windowsih
-moramo za netekstovne datoteke dodati še ``b``, ki pomeni *binary*. Če način
-ni podan, je enak ``r``.  Pod do datoteke je podana kot zaporedje map ločenih
-s ``/``, kjer ``..`` označuje *en mapo višje*. Npr. ``../slike/solata.jpg``
-pomeni: odpri datoteko ``solata.jpg``, ki se nahaja eno mapo višje v mapi
-slike.
+Bolj natančno dokumentacijo najdete na
+https://docs.python.org/3.5/library/functions.html#open.
+Na windowsih moramo za netekstovne datoteke dodati še ``b``, ki pomeni *binary*.
+Če način ni podan, je enak ``r``.  Pod do datoteke je podana kot zaporedje map
+ločenih s ``/``, kjer ``..`` označuje *en mapo višje*. Npr.
+``../slike/solata.jpg`` pomeni: odpri datoteko ``solata.jpg``, ki se nahaja eno
+mapo višje v mapi slike.
 
 Primer uporabe:
 
@@ -1417,21 +1417,19 @@ Vsebina datoteke ``besedilo.txt`` je seveda::
   Romeo: Ženska, to ni mel smisla.
   THE END
 
-.. hint::
+Če se želimo znebiti nadležnih ``\n`` na koncu prebrane vrstice, uporabimo
+metodo ``strip`` na stringih.
 
-  Če se želimo znebiti nadležnih ``\n`` na koncu prebrane vrstice, uporabimo
-  metodo ``strip`` na stringih.
+.. code::
 
-  .. py:class:: str
+  str.strip([znaki])
 
-    .. py:method:: strip([znaki])
+Poreže vse znake, ki se nahajajo v nizu ``znaki`` z začetka in konca
+niza. Če ``znaki`` niso podani, potem poreče ves whitespace (presledke,
+tabulatorje, ``\n`` in ostalo)
 
-      Poreže vse znake, ki se nahajajo v nizu ``znaki`` z začetka in konca
-      niza. Če ``znaki`` niso podani, potem poreče ves whitespace (presledke,
-      tabulatorje, ``\n`` in ostalo)
-
-      Obstajata tudi metodi ``lstrip`` in ``rstrip``, ki delujeta samo na levi
-      in desni strani niza.
+Obstajata tudi metodi ``lstrip`` in ``rstrip``, ki delujeta samo na levi
+in desni strani niza.
 
 
 Pisanje v datoteke
