@@ -8,6 +8,21 @@ Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnove
 
 Dokumentacija je na voljo na https://docs.python.org/3.5/.
 
+Programiranje je veščina, pri kateri je potrebno biti natančen. Imena funkcij,
+narekovaji, zamiki in prelomi vrstic imajo pomen in morajo biti točno tam kjer
+so v primeru, in napisani točno tako kot v primeru (če le ni primer narobe).
+Pri poimenovanju spremenljivk ali vsebini nizov pa lahko sprostite svoje
+umetniške želje (a ne preveč).
+
+Naloga 1
+========
+
+Preveri ali Python dela, tako da odpreš novo datoteko in poženeš
+
+.. code::
+
+  print("Hello world!")
+
 Osnove
 ======
 
@@ -28,8 +43,6 @@ spremenljivk določa samodejno.
 Spremenljivke se definira na naslednji način:
 
 .. code-block:: python
-
-  # -*- coding: utf-8 -*-
 
   x = 2
   y = 5
@@ -283,6 +296,13 @@ Bolj kompliciran primer:
           print(song_one)
       else:
           print(song.format(bottle_num, bottle_num - 1))
+
+Naloga 2
+========
+
+Od uporabnika dobiš število, preveri ali je popolno, torej, ali je enako vsoti
+svojih pravih deliteljev.
+
 Break
 ~~~~~
 
