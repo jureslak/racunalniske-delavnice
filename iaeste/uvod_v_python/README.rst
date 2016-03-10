@@ -3,9 +3,10 @@ Delavnica Uvod v Python
 
 Izvedena v okviru Iaeste, 10. 3. 2016 ob 17.00 v II/3B na Fakulteti za strojništvo.
 
-Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnovejša verzija [Python
-3](https://www.python.org/downloads/).
+Za izvedbo delavnice potrebujete neko verzijo Pythona, priporočljiva je najnovejša verzija `Python
+3<https://www.python.org/downloads/>`_.
 
+Dokumentacija je na voljo `tukaj<https://docs.python.org/3.4/library/stdtypes.html>`_.
 Osnove
 ======
 
@@ -26,7 +27,6 @@ spremenljivk določa samodejno.
 Spremenljivke se definira na naslednji način:
 
 .. code-block:: python
-  :linenos:
 
   # -*- coding: utf-8 -*-
 
@@ -35,11 +35,10 @@ Spremenljivke se definira na naslednji način:
   ime = "Andreja"
   leta = x + y
 
-.. HINT::
 
-  Znak = v programiranju nima istega pomena kot v matematiki. = pravzaprav
-  pomeni "vrednost na desni zapiši v spremenljivko na levi". Torej bo ukaz x =
-  x + 2 dejansko pomenil "x povečaj za 2".
+Znak = v programiranju nima istega pomena kot v matematiki. ``=``
+pomeni "vrednost na desni zapiši v spremenljivko na levi". Torej bo ukaz
+``x = x + 2`` dejansko pomenil "``x`` povečaj za 2".
 
 Komentarji
 ----------
@@ -60,15 +59,6 @@ tudi obrazložijo in dokumentirajo kodo in narekujejo njeno uporabo.
 Primer:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
-
-  """
-  Dobiti želimo absolutno vrednost spremenljivke x.
-
-  To naredimo tako da ...
-  """
 
   ime = "Janez"  # ime naj bo brez presledkov in se začne z veliko začetnico
   # v absx shranimo absolutno vrednost x
@@ -78,40 +68,46 @@ Primer:
   else:
       absx = x
 
-Input in output
----------------
+Standard input in output
+------------------------
 
-Input in output pomeni branje uporabnikovega vpisa in izpisovanje na zaslon.
-Uporabili smo funkcije ``input``, ``int``, ``print``, ``format``.
+Standardni input in output bosta za nas pomenila branje uporabnikovega vpisa in izpisovanje na zaslon.
 
-.. py:function:: input(niz_znakov)
+Uporabljali bomo funkciji:
 
-  Izpiše ``niz_znakov`` in vrne niz znakov, ki ga je vtipkal uporabnik.
+.. code::
 
-.. py:function:: print(objekt)
+  input(niz_znakov)
 
-  Izpiše niz objekt ``objekt``. Objekt je lahko število, niz znakov, ...
+Izpiše ``niz_znakov`` in vrne niz znakov, ki ga je vtipkal uporabnik.
 
-.. py:class:: str
+.. code::
 
-  .. py:method:: format(niz, p1, p2, p3, ...)
+  print(objekt)
 
-    Na mesto ki je v ``niz``-u označeno z '{0}' vstavi ``p1``, na '{1}' vstavi
-    ``p2``, ...
+Izpiše niz objekt ``objekt``. Objekt je lahko število, niz znakov, ...
 
-Ogledate si lahko tudi, kaj počne funkcija :py:func:`int`.
 
 Primer uporabe funkcije ``input`` in ``print``:
 
-.. literalinclude:: /tutorialsPythonBasic/verybasic/input/input3.py
-  :linenos:
+.. code-block:: python
+
+  if __name__ == '__main__':
+      # Get an integer from the user (will error on non-integer)
+      x = int(input("Write an integer: "))
+      print(x)
+
+      # Get a float (will error on non-number)
+      y = float(input("Write a float: "))
+      print(y)
+
+      # Get a string
+      z = input("Write something: ")
+      print(z)
 
 Primer uporabe metode ``format``:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   x = 5
   y = 10
@@ -134,7 +130,6 @@ dobimo ga tako, da pritisnemo tabulator, ki se nahaja nad CAPS LOCK tipko na
 tipkovnici):
 
 .. code-block:: python
-  :linenos:
 
   if pogoj:
       # Se izvede če je izpolnjen pogoj
@@ -145,13 +140,12 @@ tipkovnici):
   else:
       # Se izvede če ni izpolnjen noben od zgornjih pogojev
 
-.. ATTENTION::
 
-  Bodite pazljivi na dvopičje za pogojem in zamik v naslednji vrsti. Zamiki so
-  v Pythonu zelo pomembni, saj z njimi označimo del kode, ki spada pod določen
-  ``if stavek`` (in druge podobne stvari). Brez zamikov vaša koda ne bo
-  delovala! Kodo zamaknete z uporabo tabulatorja, ki se nahaja nad tipko caps
-  lock.
+Bodite pazljivi na dvopičje za pogojem in zamik v naslednji vrsti. Zamiki so
+v Pythonu zelo pomembni, saj z njimi označimo del kode, ki spada pod določen
+``if stavek`` (in druge podobne stvari). Brez zamikov vaša koda ne bo
+delovala! Kodo zamaknete z uporabo tabulatorja, ki se nahaja nad tipko caps
+lock.
 
 Pogoji
 ~~~~~~
@@ -165,9 +159,6 @@ operacij ``not``, ``and``, ``or``, ``xor`` itd.
 Primer:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   x = int(input("Vpisite stevilo: "))
   if x > 0:
@@ -193,7 +184,6 @@ While zanka
 ~~~~~~~~~~~
 
 .. code-block:: python
-  :linenos:
 
   while pogoj:
       # Se izvaja dokler je pogoj izpolnjen
@@ -205,9 +195,6 @@ tekel v neskončnost. Če se nam to slučajno zgodi, pritisnemo kombinacijo tipk
 ``ctrl+c``, s čimer program prekinemo.
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   """
   Uporabnik vpisuje geslo.
@@ -224,9 +211,6 @@ tekel v neskončnost. Če se nam to slučajno zgodi, pritisnemo kombinacijo tipk
 Primer neskončne zanke:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   """
   Želeli smo spremenljivko x iz 0 manjšati dokler ni enaka -100 in takrat zanko
@@ -248,7 +232,6 @@ For zanka
 ~~~~~~~~~
 
 .. code-block:: python
-  :linenos:
 
   for spremenljivka in zbirka:
       # Se izvaja dokler spremenljivka ne preteče vseh elementov zbirke.
@@ -262,9 +245,6 @@ od ``0`` do ``x-1`` (torej ``range(5)`` vrne ``[0, 1, 2, 3, 4]``).
 Preprost primer:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   """
   Program izpiše števila od 0 do 49.
@@ -275,9 +255,36 @@ Preprost primer:
 
 Bolj kompliciran primer:
 
-.. literalinclude:: /tutorialsPythonBasic/verybasic/loops/for.py
-  :linenos:
+.. code-block:: python
+  """
+  A for loop is usually used when we want to repeat a piece of code 'n' number of
+  times, or when we want to iterate through the elements of a list (or something
+  similar).
 
+  In this example our program will 'sing' out the 99 bottles of beer song
+  (http://en.wikipedia.org/wiki/99_Bottles_of_Beer). We use .format() to put the
+  number of bottles in the text and we use an if sentance for the last two
+  verses.
+  """
+
+  if __name__ == '__main__':
+      for i in range(100):
+          bottle_num = 99 - i
+          song = ("{0} bottles of beer on the wall, {0} bottles of beer.\n" +
+                  "Take one down, pass it around, {1} bottles of beer on the " +
+                  "wall ...\n")
+          song_one = ("1 bottle of beer on the wall, 1 bottle of beer.\n" +
+                      "Take it down, pass it around, there are no bottles " +
+                      "left on the wall ...\n")
+          song_no = ("No more bottles of beer on the wall, no more bottles of " +
+                     "beer.\nGo to the store and buy us some more, 99 bottles " +
+                     "of beer on the wall ...\n")
+          if i == 99:
+              print(song_no)
+          elif i == 98:
+              print(song_one)
+          else:
+              print(song.format(bottle_num, bottle_num - 1))
 Break
 ~~~~~
 
@@ -292,9 +299,6 @@ primeru for zanka).
 Primer:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   """
   Uporabnik vpisuje geslo. Če 5x zaporedoma vpiše napačno geslo je izključen iz
@@ -324,9 +328,6 @@ ampak preskoči vse do konca trenutne iteracije in takoj začne izvajanje
 naslednje. To je uporabno na primer za filtriranje neveljavnih podatkov:
 
 .. code-block:: python
-  :linenos:
-
-  # -*- coding: utf-8 -*-
 
   a = "sajkdfs adfjkhasdf jkasdkfjas dfkjhasd fasdlfkjsa dflkjsadf"
   veljavno = "aeiou"
@@ -345,7 +346,7 @@ Podatkovni tipi
 V tem poglavju bomo predstavili podatkovne tipe, kaj so in zakaj so pomembni,
 kako jih uporabljamo in kateri obstajajo. Nekatere si bomo tudi podrobneje
 ogledali. Bolj obsežno (in pravilno) dokumentacijo najdete `tukaj
-<https://docs.python.org/3.4/library/stdtypes.html>`_.
+<https://docs.python.org/3.5/library/stdtypes.html>`_.
 
 Uvod
 ----
@@ -367,16 +368,20 @@ dobra. Veljavne vrednosti decimalnih števila sta tudi obe neskončnosti in
 ``nan``, ki pomeni "Not a number". Cela števila dobimo iz drugih tipov s
 funkcijo ``int``, decimalna pa s funkcijo ``float``.
 
-.. py:function:: int(objetkt, [baza])
+.. code::
 
-  Pretvori ``objekt`` v celo število. Če to ni mogoče, vrže izjemo. Pri
-  decimalnem argumentu odreže decimalke. Če je podan
-  parameter ``baza``, poskuša pretvoriti ``objekt``, kot bi bil zapisan v številskem
-  sistemu z bazo ``baza``
+  int(objetkt, [baza])
 
-.. py:function:: float(objetkt)
+Pretvori ``objekt`` v celo število. Če to ni mogoče, vrže izjemo. Pri
+decimalnem argumentu odreže decimalke. Če je podan
+parameter ``baza``, poskuša pretvoriti ``objekt``, kot bi bil zapisan v številskem
+sistemu z bazo ``baza``
 
-  Pretvori ``objekt`` v decimalno število. Če to ni mogoče, vrže izjemo.
+.. code::
+
+  float(objetkt)
+
+Pretvori ``objekt`` v decimalno število. Če to ni mogoče, vrže izjemo.
 
 .. note::
 
@@ -405,10 +410,12 @@ decimalno število. Če želimo dobiti celoštevilsko deljenje, ki zaokrožuje p
 Python naravno podpira tudi kompleksna števila s pomočjo tipa ``complex`` ali
 imaginarne enote ``j``, npr. ``3.4 - 2.8j``.
 
-.. py:function:: complex(arg1, [arg2])
+.. code::
 
-  Če je dan samo en argument, ga poskuša pretvoriti v kompleksno število. Če
-  sta podana oba argumenta, potem ju interpretira kot realni in imaginarni del.
+  complex(arg1, [arg2])
+
+Če je dan samo en argument, ga poskuša pretvoriti v kompleksno število. Če
+sta podana oba argumenta, potem ju interpretira kot realni in imaginarni del.
 
 Logične vrednosti
 -----------------
@@ -424,10 +431,11 @@ shranjevanje stanja stikal ... Vsak tip lahko pretvorimo v logično vrednost z
 uporabo funkcije ``bool`` in skoraj vse se pretvori v ``True``, razen "praznih"
 objektov -- ``[]``, ``()``, ``0``, ``{}`` se na primer pretvorijo v ``False``.
 
-.. py:function:: bool(objekt)
+.. code::
+  bool(objekt)
 
-  Poskuša pretvoriti objekt v logično vrednost, po pravilih omenjenih zgoraj.
-  Funkcija ne meče izjem.
+Poskuša pretvoriti objekt v logično vrednost, po pravilih omenjenih zgoraj.
+Funkcija ne meče izjem.
 
 .. code-block:: python
 
@@ -442,19 +450,17 @@ objektov -- ``[]``, ``()``, ``0``, ``{}`` se na primer pretvorijo v ``False``.
 Vrstni red izvajanja operacij je enak kot v matematiki, torej ``not``, ``and``,
 ``or``. Vendar je zaradi nedvoumnosti priporočljivo uporabiti oklepaje.
 
-.. HINT::
-
-  Princip zastavic je eden izmed klasičnih prijemov v programiranju, s katerim
-  si lahko pomagamo v zelo veliko različnih primerih. Ideja je, da neko
-  "zastavico" (logično spremenljivko) postavimo na eno izmed vrednosti, potem pa
-  jo pod določenimi pogoji spremenimo. Primer bi bilo npr.  preverjanje če je
-  neko število praštevilo. Na začetku privzamemo, da število je praštevilo
-  (``zastavica = True``). Nato gremo preverjati, če kakšno število različno od
-  ena slučajno deli našo število. Če ga najdemo, zastavico nastavimo na
-  ``False``.  Ko se ta del programa izvede, nam stanje zastavice pove, ali je
-  število praštevilo ali ne -- če smo našli vsaj enega delitelja je zastavica
-  ``False``, če deliteljev nismo našli pa je ``True``. Ta princip je seveda
-  mogoče posplošiti na več kot dve vrednosti.
+Princip zastavic je eden izmed klasičnih prijemov v programiranju, s katerim
+si lahko pomagamo v zelo veliko različnih primerih. Ideja je, da neko
+"zastavico" (logično spremenljivko) postavimo na eno izmed vrednosti, potem pa
+jo pod določenimi pogoji spremenimo. Primer bi bilo npr.  preverjanje če je
+neko število praštevilo. Na začetku privzamemo, da število je praštevilo
+(``zastavica = True``). Nato gremo preverjati, če kakšno število različno od
+ena slučajno deli našo število. Če ga najdemo, zastavico nastavimo na
+``False``.  Ko se ta del programa izvede, nam stanje zastavice pove, ali je
+število praštevilo ali ne -- če smo našli vsaj enega delitelja je zastavica
+``False``, če deliteljev nismo našli pa je ``True``. Ta princip je seveda
+mogoče posplošiti na več kot dve vrednosti.
 
 None
 ~~~~
@@ -494,10 +500,12 @@ Kot vidimo, lahko seznam vsebuje mešane tipe spremenljivk - vsebuje lahko nekaj
 celih števil, nekaj decimalnih števil in nekaj nizov znakov. Sezname iz drugih
 tipov dobimo s funkcijo ``list``.
 
-.. py:function:: list(objekt)
+.. code::
 
-  Poskuša pretvoriti objekt v seznam. Objekt mora biti iterabilen, sicer
-  funkcija vrže izjemo.
+  list(objekt)
+
+Poskuša pretvoriti objekt v seznam. Objekt mora biti iterabilen, sicer
+funkcija vrže izjemo.
 
 Dostopanje elementov seznama
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -533,23 +541,29 @@ operacije na seznamih) uporabljamo metode. Do metod dostopamo tako, da po imenu
 seznama napišemo ``.``, za njo pa ime metode (seznam.metoda()). Najbolj
 uporabljane metode so naslednje:
 
-.. py:class:: list
+.. code::
 
-  .. py:method:: append(vrednost)
+ list.append(vrednost)
 
-    V seznam na koncu doda element z vrednostjo ``vrednost``.
+V seznam na koncu doda element z vrednostjo ``vrednost``.
 
-  .. py:method:: insert(index, vrednost)
+.. code::
 
-    V seznam pred ``index``-to mesto doda element z vrednostjo ``vrednost``.
+  list.insert(index, vrednost)
 
-  .. py:method:: pop(index)
+V seznam pred ``index``-to mesto doda element z vrednostjo ``vrednost``.
 
-    Iz seznama pobriše ``index``-ti element in vrne njegovo vrednost.
+.. code::
 
-  .. py:method:: remove(vrednost)
+  list.pop(index)
 
-    Iz seznama pobriše prvi element z vrednostjo ``vrednost``.
+Iz seznama pobriše ``index``-ti element in vrne njegovo vrednost.
+
+.. code::
+
+  list.remove(vrednost)
+
+Iz seznama pobriše prvi element z vrednostjo ``vrednost``.
 
 Še primeri uporabe metod
 
@@ -594,10 +608,12 @@ Niz pa lahko ustvarimo tudi iz kateregakoli drugega tipa s klicanjem funkcije
   stevilka_ampak_ne_cisto = str(12)
   stevilka_ampak_spet_ne_cisto = '134'
 
-.. py:function:: str(objekt)
+.. code::
 
-  Pretvori objekt v niz znakov. Ta funkcija se tudi implicitno kliče pri
-  klicanju funkcije ``print``.
+  str(objekt)
+
+Pretvori objekt v niz znakov. Ta funkcija se tudi implicitno kliče pri
+klicanju funkcije ``print``.
 
 Niz znakov ``"abcd"`` si lahko nekako predstavljamo kot seznam ``['a', 'b',
 'c', 'd']``. Primerjava v Pythonu ni čisto popolna, saj elementov niza znakov
@@ -678,10 +694,12 @@ Torej bolj formalno: kot *ključ* v slovarju lahko uporabimo katerikoli
 **nespremenljiv** objekt, in pod ta ključ lahko spravimo želeno vrednost.
 Slovarje lahko naredimo na veliko načinov.
 
-.. py:function:: dict(objekt)
+.. code::
 
-  Pretvori ``objekt`` v slovar. Objekt je lahko na primer seznam dvojic, drug
-  slovar...
+  dict(objekt)
+
+Pretvori ``objekt`` v slovar. Objekt je lahko na primer seznam dvojic, drug
+slovar...
 
 Primer:
 
@@ -724,23 +742,27 @@ Slovarji imajo zelo veliko metod podobnih seznamom.
 Nove elemente dodamo kar s klicem ``ocene["piflar"] = [5, 5, 5]``.
 Dolžino jim lahko izračunamo s pomočjo funkcije ``len``.
 
-.. py:class:: dict
+.. code::
 
-  .. py:method:: get(key, default)
+  dict.get(key, default)
 
-    Vrne vrednost pri ključu ``key``, če obstaja, sicer vrne ``default``. Ne
-    vrže izjeme.
+Vrne vrednost pri ključu ``key``, če obstaja, sicer vrne ``default``. Ne
+vrže izjeme.
 
-  .. py:method:: update(slovar)
+.. code::
 
-    V slovar doda nov slovar, pri čemer prepiše morebitne že obstoječe ključe z
-    novimi.
+  dict.update(slovar)
 
-  .. py:method:: pop(key, [default])
+V slovar doda nov slovar, pri čemer prepiše morebitne že obstoječe ključe z
+novimi.
 
-    Iz seznama pobriše element pri ključu ``key`` in vrne njegovo vrednost. Če
-    ne obstaja potem vrže izjemo, razen če je podan tudi parameter ``default``
-    (ki ni obvezen). V slednjem primeru vrne ``default``.
+.. code::
+
+  dict.pop(key, [default])
+
+Iz seznama pobriše element pri ključu ``key`` in vrne njegovo vrednost. Če
+ne obstaja potem vrže izjemo, razen če je podan tudi parameter ``default``
+(ki ni obvezen). V slednjem primeru vrne ``default``.
 
 
 Množice
@@ -765,32 +787,40 @@ matematičnih operacij, kot so unija ``|``, presek ``&``, "je podmnožica" ``<=`
 "je nadmnožica" ``>=`` (tudi "pravi" verziji ``<`` in ``>``), simetrična razlika
 ``^``.
 
-.. py:function:: set(objekt)
+.. code::
 
-  Pretvori ``objekt`` v množico, če je to možno, sicer vrže izjemo. To pomeni,
-  da se lahko vrsti red elementov premeša, duplikati pa se lahko odstranijo.
+  set(objekt)
+
+Pretvori ``objekt`` v množico, če je to možno, sicer vrže izjemo. To pomeni,
+da se lahko vrsti red elementov premeša, duplikati pa se lahko odstranijo.
 
 Ostale uporabne metode za manipulacijo množic:
 
-.. py:class:: set
+.. code::
 
-  .. py:method:: add(vrednost)
+  set.add(vrednost)
 
-    Doda vrednost ``vrednost`` v množico, če ta že obstaja, se ne zgodi nič.
+Doda vrednost ``vrednost`` v množico, če ta že obstaja, se ne zgodi nič.
 
-  .. py:method:: remove(vrednost)
+.. code::
 
-    Odstrani vrednost ``vrednost`` iz množice, če ta ne obstaja, vrže izjemo
-    ``KeyError``.
+  set.remove(vrednost)
 
-  .. py:method:: discard(vrednost)
+Odstrani vrednost ``vrednost`` iz množice, če ta ne obstaja, vrže izjemo
+``KeyError``.
 
-    Odstrani vrednost ``vrednost`` iz množice, če ta ne obstaja, se ne zgodi
-    nič.
+.. code::
 
-  .. py:method:: pop()
+  set.discard(vrednost)
 
-    Odstrani in vrne nek element množice. Če je prazna, vrže izjemo ``KeyError``.
+Odstrani vrednost ``vrednost`` iz množice, če ta ne obstaja, se ne zgodi
+nič.
+
+.. code::
+
+  set.pop()
+
+Odstrani in vrne nek element množice. Če je prazna, vrže izjemo ``KeyError``.
 
 Množice so očitno spremenljivi objekti, nespremenljivo verzijo, ki jo lahko
 uporabimo kot ključ slovarja ali element množice implementira ``frozenset``.
@@ -1271,18 +1301,19 @@ podatke za njeno branje. Če želimo brati datoteko, ki ne obstaja, potem Python
 vrže izjemo. Odpiranje samo pripravi datoteko za operacije na njej in ne naredi
 še nič resnega.
 
-.. py:function:: open(pot_do_datoteke[, način])
+.. code::
+  open(pot_do_datoteke[, način])
 
-  Najde datoteko in vrne objekt za delo z njo. Kaj lahko počne je odvisno od
-  ``načina``, ki je ``r`` za branje, ``w`` za pisanje, ``+`` za branje in
-  pisanje ter ``a`` za dodajanje. Kratice pomenijo *read*, *write* in *append*.
-  Bolj natančno dokumentacijo najdete `tukaj
-  <https://docs.python.org/3.4/library/functions.html#open>`_. Na windowsih
-  moramo za netekstovne datoteke dodati še ``b``, ki pomeni *binary*. Če način
-  ni podan, je enak ``r``.  Pod do datoteke je podana kot zaporedje map ločenih
-  s ``/``, kjer ``..`` označuje *en mapo višje*. Npr. ``../slike/solata.jpg``
-  pomeni: odpri datoteko ``solata.jpg``, ki se nahaja eno mapo višje v mapi
-  slike.
+Najde datoteko in vrne objekt za delo z njo. Kaj lahko počne je odvisno od
+``načina``, ki je ``r`` za branje, ``w`` za pisanje, ``+`` za branje in
+pisanje ter ``a`` za dodajanje. Kratice pomenijo *read*, *write* in *append*.
+Bolj natančno dokumentacijo najdete `tukaj
+<https://docs.python.org/3.4/library/functions.html#open>`_. Na windowsih
+moramo za netekstovne datoteke dodati še ``b``, ki pomeni *binary*. Če način
+ni podan, je enak ``r``.  Pod do datoteke je podana kot zaporedje map ločenih
+s ``/``, kjer ``..`` označuje *en mapo višje*. Npr. ``../slike/solata.jpg``
+pomeni: odpri datoteko ``solata.jpg``, ki se nahaja eno mapo višje v mapi
+slike.
 
 Primer uporabe:
 
@@ -1305,12 +1336,12 @@ kakšen program uporablja (če je odprta).
 
 Datoteko zapremo s klicem metode ``close``.
 
-.. py:class:: file
+.. code::
 
-  .. py:method:: close()
+  file.close()
 
-    Zapre datoteko in pove sistemu, da smo jo nehali uporabljati. To tudi napiše
-    vse morebitne še nenapisane podatke do konca (flusha datoteko).
+Zapre datoteko in pove sistemu, da smo jo nehali uporabljati. To tudi napiše
+vse morebitne še nenapisane podatke do konca (flusha datoteko).
 
 .. code-block:: python
 
@@ -1331,20 +1362,24 @@ Branje datotek
 Privzemimo, da smo datoteko odprli za branje. Za branje imamo na voljo veliko
 načinov.
 
-.. py:class:: file
+.. code::
 
-  .. py:method:: read([n])
+  file.read([n])
 
-    Prebere celo datoteko kot niz, skupaj z vsemi posebnimi znaki (recimo
-    ``\n``). Če je ``n`` podan, prebere samo prvih ``n`` bajtov.
+Prebere celo datoteko kot niz, skupaj z vsemi posebnimi znaki (recimo
+``\n``). Če je ``n`` podan, prebere samo prvih ``n`` bajtov.
 
-  .. py:method:: readline()
+.. code::
 
-    Prebere naslednjo vrstico in jo vrne (vključno z ``\n``).
+  file.readline()
 
-  .. py:method:: realines()
+Prebere naslednjo vrstico in jo vrne (vključno z ``\n``).
 
-    Prebere vse vrstice in jih vrne kot seznam (vključno z ``\n``)
+.. code::
+
+  file.realines()
+
+Prebere vse vrstice in jih vrne kot seznam (vključno z ``\n``)
 
 Lahko beremo tudi s ``for`` zanko. Pri branju si datoteka zapomni, do kam smo jo
 prebrali in naslednjič, ko kličemo kakšno funkcijo za branje nadaljuje, kjer
@@ -1408,15 +1443,17 @@ izgubljeno. Če datoteka še ni obstajala, potem se ustvari nova datoteka.
 
 Pišemo lahko na dva načina, z uporabo metode ``write`` ali ``writelines``.
 
-.. py:class:: file
+.. code::
 
-  .. py:method:: write(niz)
+  file.write(niz)
 
-    Napiše niz v datoteko. Ne doda nobenih posebnih znakov.
+Napiše niz v datoteko. Ne doda nobenih posebnih znakov.
 
-  .. py:method:: writelines(seznam_nizov)
+.. code::
 
-    Napiše seznam nizov v datoteko, niz po niz. Ne doda nobenih vmesnih znakov.
+  file.writelines(seznam_nizov)
+
+Napiše seznam nizov v datoteko, niz po niz. Ne doda nobenih vmesnih znakov.
 
 Primer:
 
