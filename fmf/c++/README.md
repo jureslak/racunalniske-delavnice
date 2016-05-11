@@ -67,13 +67,163 @@ da ste naredili nekaj neveljavnega, npr. šli čez seznam ali delili z nič
 (ne pa npr. da ste sešteli `int` in `string`). Taka napaka ponavadi konča z
 redkobesednim sporočilom `Segmentation fault` ali okenčkom z napako na Windowsih.
 
+## Osnove
+Zanke in if stavki:
+```
+while (true) {
+    for (int i = 0; i < n; ++i) {
+        if (i > 5) {
+            cout << i << endl;
+            break;
+        }
+    }
+}
+```
+
+Funkcije:
+```
+double razdalja(int x, int y) {
+    return sqrt(x*x + y*y);
+}
+```
+
+
 ## Standardna knjižnica
 C++ ima (od standarda 11 najprej) spodobno veliko standardno knjižnico. Ne more
 se kosati s Pythonom ali Javo, je pa veliko boljša od C-jeve.
 
-Dokumentacija, ki jo bomo veliko uporabljali je na voljo na
+Dokumentacija, ki jo bomo veliko uporabljali, je na voljo na
 [http://www.cplusplus.com/reference/](http://www.cplusplus.com/reference/).
 Alternativa je [http://en.cppreference.com/w/](http://en.cppreference.com/w/).
+
+Pogledali bomo podatkovne strukture, slučajne spremenljivke, algoritme, foreach zanko.
+
+Vprašanja za čast in slavo:
+* Kaj je najbolj pogosta beseda z n črkami v skripti Analiza 1, za n = 3, 4, 5, 6, 7, 8, ...
+* Koliko je integral `\int_0^\pi \log(1+ \sin x) dx` na 1e-2 relativne napake natančno?
+* Koliko permutacij stavka "FMF JE KUL" vsebuje natanko tri besede (strnjene podnize znakov ločene s
+  presledkom)?
+* Kako dolga je najkrajša pot skozi labirint? Začne se zgoraj levo.
+
+
+## Classi
+
+Podobno kot v ostalih jezikih. Najenostavnejši primer:
+```
+struct Junak {
+    string ime;
+    int ponovitev;
+};
+```
+
+Uporaba:
+```
+Junak nino;
+nino.ime = "Nino";
+nino.ponovitev = 4;
+Junak jana = {"Jana", 3};
+```
+
+### Metode, konstruktorji, operatorji.
+```
+class A {
+  public:
+    int x;
+    A(int y) : x(y) { cout << "int constructor" << endl; }
+    A() : x(0) { cout << "Default constructor" << endl; }
+    A(const A&) : { cout << "Copy constructor" << endl; }
+    A& operator=(const A&) { cout << "Copy assignment" << endl; }
+    ~A() { cout << "Default destructor" << endl; }
+    bool operator<(const A& a) const { return x < a.x; }
+};
+ostream& operator<<(ostream& os, const A& a) {
+    return os << a.x;
+}
+
+A a;
+A b(5);
+A c(a);
+A d = c;
+A e;
+e = a;
+if (a < b) {
+    e = b;
+} else {
+    e = c;
+}
+cout << e << endl;
+```
+
+### Memory leaks
+```
+while (true) {
+    int* p = new int(5);
+}
+```
+ali
+```
+int* p = new int(5);
+p = new int(6);
+delete p;
+```
+
+Dokončaj class Junaki.
+
+## Templates
+
+Velikokrat je treba napisati skoraj enako funkcijo za veliko različnih tipov.
+Ali pa narediti generičen container, recimo vector.
+Takrat uporabimo template.
+
+Namesto:
+```
+double skal(const vector<double>& a, const vector<double>& b) {
+    double ret = 0;
+    for (int i = 0; i < a.size(); ++i) {
+        ret += a[i] * b[i];
+    }
+    return ret;
+}
+```
+napišemo
+```
+template <typename T>
+T skal(const vector<T>& a, const vector<T>& b) {
+    T ret = T(0);
+    for (int i = 0; i < a.size(); ++i) {
+        ret += a[i] * b[i];
+    }
+    return ret;
+}
+```
+
+Funkcije poljubno mnogo spremenljivk.
+```
+template <typename T>
+T func(T t) {
+    return t;
+}
+
+template<typename T, typename... Args>
+T func(T t, Args... args) {
+    return t + func(args...);
+}
+```
+
+Napiši funkcijo, ki sprinta poljuben container. Ali pa napiši minimum funkcijo za poljubno mnogo
+argumentov.
+
+### Templati so jezik v jeziku
+Glej primer 8 in assembly kodo.
+```
+g++ -o 8 8-templates2.cpp -g -Wa,-alh -O3 | head -40
+```
+
+## Prosto
+Možne teme:
+* Pointerji, reference in iteratorji
+* Multithreading
+* Dedovanje in virtualne funkcije
 
 <!---
 vim: set spell spelllang=sl:
