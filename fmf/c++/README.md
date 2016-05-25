@@ -99,12 +99,13 @@ Alternativa je [http://en.cppreference.com/w/](http://en.cppreference.com/w/).
 Pogledali bomo podatkovne strukture, slučajne spremenljivke, algoritme, foreach zanko.
 
 Vprašanja za čast in slavo:
+* Katero je najmanjše naravno število, da se postopek ponavljajočega seštevanja števk ustavi po
+  i korakih, za i = 1, 2, 3, 4?
 * Kaj je najbolj pogosta beseda z n črkami v skripti Analiza 1, za n = 3, 4, 5, 6, 7, 8, ...
 * Koliko je integral `\int_0^\pi \log(1+ \sin x) dx` na 1e-2 relativne napake natančno?
 * Koliko permutacij stavka "FMF JE KUL" vsebuje natanko tri besede (strnjene podnize znakov ločene s
   presledkom)?
 * Kako dolga je najkrajša pot skozi labirint? Začne se zgoraj levo.
-
 
 ## Classi
 
@@ -167,7 +168,7 @@ p = new int(6);
 delete p;
 ```
 
-Dokončaj class Junaki.
+**Naloga:** Napiši class `Vec2d`, ki se zna seštevat, printat, množit, skalarno množit ...
 
 ## Templates
 
