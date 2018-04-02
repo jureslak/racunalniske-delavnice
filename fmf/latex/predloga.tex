@@ -1,0 +1,52 @@
+% !TeX spellcheck = sl_SI
+\documentclass[a4paper,oneside,12pt]{article}
+
+\usepackage[utf8]{inputenc}    % make čšž work on input
+\usepackage[T1]{fontenc}       % make čšž work on output
+\usepackage[slovene]{babel}    % slovenian language and hyphenation
+\usepackage[reqno]{amsmath}    % basic math
+\usepackage{amssymb,amsthm}    % math symbols and theorem environments
+\usepackage{graphicx}          % images
+
+\usepackage[
+  paper=a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm
+% textheight=24cm,
+]{geometry}  % page geomerty
+
+% vstavi svoje pakete tukaj
+
+% clickable references, pdf toc
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, anchorcolor=black,
+  citecolor=black, filecolor=black, menucolor=black, runcolor=black,
+  urlcolor=black, pdfencoding=unicode]{hyperref}
+
+\hypersetup{pdftitle={Naslov dokumenta}, pdfauthor={Ime priimek}}
+
+% lastne definicije
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\renewcommand{\C}{\ensuremath{\mathbb{C}}}
+% stavi lastne definicije tukaj
+
+% \pagestyle{empty}              % vse strani prazne
+% \setlength{\parindent}{0pt}    % zamik vsakega odstavka
+% \setlength{\parskip}{10pt}     % prazen prostor pod odstavkom
+\setlength{\overfullrule}{30pt}  % oznaci predlogo vrstico z veliko črnine
+
+\begin{document}
+
+% piši vsebino tukaj
+Vsebina
+
+\end{document}
+% vim: syntax=tex
+% vim: spell spelllang=sl
+% vim: foldlevel=99
+% Latex template: Jure Slak, jure.slak@fmf.uni-lj.si
+

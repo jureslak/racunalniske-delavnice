@@ -1,0 +1,762 @@
+% !TeX spellcheck = sl_SI
+\documentclass[a4paper,oneside,10pt]{article}
+
+\usepackage[utf8]{inputenc}    % make čšž work on input
+\usepackage[T1]{fontenc}       % make čšž work on output
+\usepackage[slovene]{babel}    % slovenian language and hyphenation
+\usepackage[reqno]{amsmath}    % basic ams math environments and symbols
+\usepackage{amssymb,amsthm}    % ams symbols and theorems
+\usepackage{graphicx}          % images
+
+\usepackage[
+  paper=a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm
+% textheight=24cm,
+]{geometry}  % page geomerty
+
+\usepackage{multicol}
+\usepackage{minted}
+\setminted{fontsize=\small,baselinestretch=1}
+\usepackage{mathrsfs}
+
+% clickable references, pdf toc
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, anchorcolor=black,
+  citecolor=black, filecolor=black, menucolor=black, runcolor=black,
+  urlcolor=black, pdfencoding=unicode]{hyperref}
+
+\hypersetup{pdftitle={Praktičen uvod v LaTeX}, pdfauthor={Jure Slak}}
+
+% lastne definicije
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\renewcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\newmintinline[ltx]{latex}{}
+\newmintinline[ltxs]{latex}{showspaces}
+
+% \pagestyle{empty}              % vse strani prazne
+% \setlength{\parindent}{0pt}    % zamik vsakega odstavka
+% \setlength{\parskip}{10pt}     % prazen prostor pod odstavkom
+\setlength{\overfullrule}{30pt}  % oznaci predlogo vrstico z veliko črnine
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{\fill}
+  \textbf{\huge Praktičen uvod v \LaTeX} \\[2ex]
+  {\large Jure Slak}
+
+  \vfill
+
+  \tableofcontents
+
+  \vfill
+
+  \today
+\end{center}
+
+\newpage
+
+\section{Osnovno o \LaTeX u}
+\LaTeX (izgovorjava ``lateh'') je sistem za pisanje dokumentov, ki ga je razvil Leslie Lamport kot
+izboljšavo predhodnega sistema Donalda Knutha, imenovanega \TeX.
+
+\LaTeX{} dokumente se ponavadi piše v \texttt{.tex} datoteke. Najbolj osnovna struktura datoteke
+izgleda tako:
+
+\begin{minted}[linenos]{latex}
+\documentclass{article}
+% preambula
+\begin{document}
+vsebina
+\end{document}
+\end{minted}
+
+Na vrhu je definiran tip dokumenta. Običajno se za manjše dokumente uporablja article, obstajajo pa
+tudi drugi, pogosto tudi dani s strani inštitucije, za katero dokument pišete.
+Temu sledi \emph{preambula}, del dokumenta, ki ni vsebinski, ampak je namenjen različnim
+nastavitvam. Nato sledi značka za začetek dokumenta, sledi vsebina in
+značka za konec dokumenta. Vse kar sledi tej znački, prevajalnik ignorira.
+
+Tekom prevajanja program \verb|pdflatex| producira različne datoteke \verb|.log|. \verb|.toc|,
+\verb|.aux| itd., ki jih lahko po koncu pobrišemo. Tudi če gre med prevajanjem kaj narobe, jih lahko
+pobrišemo, da začnemo na novo.
+
+Latex pozna ukaze in okolja:
+\begin{itemize}
+  \item \emph{ukazi} so oblike \ltx{\ukaz}, \ltx{\ukaz{arg1}}, \ltx{\ukaz{arg1}{arg2}}, itd.\ ali \\
+    \ltx{\ukaz[arg]}, \ltx{\ukaz[arg]{arg}}, \ltx{\ukaz[arg]{arg1}{arg2}}, itd.,
+    kjer so argumenti \texttt{arg1}, \texttt{arg2} v zavitih oklepajih
+    obvezni, argument v oglatih pa neobvezni in jih lahko izpustimo.
+  \item \emph{okolja} so oblike \ltx{\begin{okolje} ... \end{okolje}}, \\
+    \ltx{\begin{okolje}{arg1} ... \end{okolje}}, itd.\ ali \\
+    \ltx{\begin{okolje}[arg] ... \end{okolje}}, \\
+    \ltx{\begin{okolje}[arg]{arg1} ... \end{okolje}}, itd., kjer kot prej v zavitih oklepajih
+    navajamo obvezne argumente, v oglatih pa neobvezne.
+  \item poznamo tudi \emph{stare \TeX{} ukaze}, ki so oblike \ltx{{\ukaz }} in veljajo od ukaza do
+    konca trenutnih zavitih oklepajev ali okolja. Kodo znotraj okolji ponavadi zamikamo za 2
+    presledka ali pa sploh ne.
+\end{itemize}
+
+\emph{Komentarje} pišemo z znakom \%. Prevajalnik ignorira vse od znaka \% do konca vrstice.
+
+Drugi \emph{posebni znaki} so \verb|# $ % ^ & _ { } ~ \|. Če jih želite uporabiti v dokumentu
+dobesedno, je potrebno napisati \verb|\# \$ \% \^{} \& \_ \{ \} \~{} \textbackslash|.
+
+V preambuli dokumenta definiramo z ukazom \ltx{\usepackage[options]{package-name}} vse pakete, ki jih bomo uporabljali.
+Standardna preambula vsebuje:
+
+\begin{minted}[linenos]{latex}
+\documentclass[a4paper,oneside,12pt]{article}
+
+\usepackage[utf8]{inputenc}    % make čšž work on input
+\usepackage[T1]{fontenc}       % make čšž work on output
+\usepackage[slovene]{babel}    % slovenian language and hyphenation
+\usepackage[reqno]{amsmath}    % basic math package
+\usepackage{amssymb,amsthm}    % symbols and theorem environments
+\usepackage{graphicx}          % images
+
+\usepackage[
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm
+]{geometry}  % page geomerty
+
+% vstavi svoje pakete tukaj
+
+% clickable references, pdf table of contents
+\usepackage[bookmarks, colorlinks=true, linkcolor=black, anchorcolor=black,
+  citecolor=black, filecolor=black, menucolor=black, runcolor=black,
+  urlcolor=black, pdfencoding=unicode]{hyperref}
+\end{minted}
+
+Ukazu \ltx{\documentclass} lahko podamo možnosti za velikost pisave in papirja. Vključimo pakete za
+delo z UTF-8 znaki, podporo slovenščini, osnovne matematične pakete in pakete za podporo slik.  S
+paketom \verb|geometry| nastavimo odmike na robu. Paket \verb|hyperref| poskrbi za to, da lahko
+kliknemo na sklice in citate  v PDF datoteki in da ima ta ob strani strukturo dokumenta.  To lahko
+vidite tudi v tem dokumentu.
+
+\section{Osnovna struktura in oblikovanje dokumenta}
+Osnovno logično strukturo definiramo z ukazi \ltx{\section}, \ltx{\subsection} in
+\ltx{\subsubsection}. Obstajajo tudi verzije ukazov z zvezdico, \ltx{\section*} itd., ki poglavij ne
+številčijo.
+
+Besedilo pišemo prosto, pri čemer \LaTeX{} ignorira nove vrstice in zamike presledke v besedilu.
+Sam tudi deli besede. Če katere besede ne zna deliti, mu lahko pomagamo z ukazom
+\ltx{\hyphenation{ra-ču-nal-nik}} v preambuli.
+\emph{Nov odstavek} začnemo tako, da spustimo eno ali več praznih vrstic. Z ukazom \ltx{\\} ali
+\ltx{\newline} lahko na silo začnemo novo vrstico, z ukazom \ltx{\newpage} pa novo stran.
+Ta ukaza se uporablja sorazmerno redko.
+
+\begin{minted}[linenos]{latex}
+  To je odstavkek z vrstico, \\ ki smo jo namenoma zlomili.
+  To je še vedno isti odstavek. LaTeX dodatne     presledke
+       ali zamike ignorira.
+
+  To je nov odstavek.
+
+  \newpage
+
+  To je nov odstavek na novi strani.
+\end{minted}
+
+\emph{Stil strani} lahko nastavljamo z ukazom \ltx{\pagestyle}, ki je najbolj pogosto poklican z
+argumentom \texttt{empty} ali \texttt{plain}. Če želimo stil spremeniti samo za eno stran, uporabimo
+ukaz \ltx{\thispagestyle}.
+
+Besedilo lahko poravnamo levo, desno ali sredinsko z okolji \verb|flushleft|, \verb|flushright| in
+\verb|center|.
+
+\subsection{Velikost in oblika pisave}
+\label{sec:font-style}
+
+Za velikost pisave imamo na voljo stare \TeX{} ukaze: \\
+
+\begin{tabular}[h]{ll}
+  \ltx{{\Huge         Primer besedila}} & {\Huge         Primer besedila} \\
+  \ltx{{\huge         Primer besedila}} & {\huge         Primer besedila} \\
+  \ltx{{\LARGE        Primer besedila}} & {\LARGE        Primer besedila} \\
+  \ltx{{\Large        Primer besedila}} & {\Large        Primer besedila} \\
+  \ltx{{\large        Primer besedila}} & {\large        Primer besedila} \\
+  \ltx{{\normalsize   Primer besedila}} & {\normalsize   Primer besedila} \\
+  \ltx{{\small        Primer besedila}} & {\small        Primer besedila} \\
+  \ltx{{\footnotesize Primer besedila}} & {\footnotesize Primer besedila} \\
+  \ltx{{\scriptsize   Primer besedila}} & {\scriptsize   Primer besedila} \\
+  \ltx{{\tiny         Primer besedila}} & {\tiny         Primer besedila} \\
+\end{tabular} \\[\baselineskip]
+
+\noindent Za obliko pisave imamo na voljo naslednje nove \LaTeX{} ukaze: \\
+
+\begin{tabular}[h]{lll}
+  Roman (serif): & \ltx{\textrm{Primer besedila}} & \textrm{Primer besedila} \\
+  Sans-serif: & \ltx{\textsf{Primer besedila}} & \textsf{Primer besedila} \\
+  Monospaced (typewriter-type): & \ltx{\texttt{Primer besedila}} & \texttt{Primer besedila} \\
+  Bold face:& \ltx{\textbf{Primer besedila}} & \textbf{Primer besedila} \\
+  Italic: & \ltx{\textit{Primer besedila}} & \textit{Primer besedila} \\
+  Small caps: & \ltx{\textsc{Primer besedila}} & \textsc{Primer besedila} \\
+  Upright: & \ltx{\textup{Primer besedila}} & \textup{Primer besedila} \\
+  Slanted: & \ltx{\textsl{Primer besedila}} & \textsl{Primer besedila} \\
+  Medium weight: & \ltx{\textmd{Primer besedila}} & \textmd{Primer besedila} \\
+\end{tabular} \\
+
+Ukaze lahko seveda gnezdimo. Za uporabo znotraj matematičnih okolij imamo verzije \ltx{\mathrm},
+\dots Za \emph{poudarjene izraze} se ponavadi uporablja ukaz \verb|\emph{ }|, ki privzeto tekst napiše ležeče, dvojno
+poudarjen tekst pa zopet pokončno.
+
+\subsection{Prazen prostor}
+Praviloma se \LaTeX u pusti, da se sam določa, kam postavi stvari in koliko prostora pusti vmes, pri
+čemer imamo na voljo veliko nastavitev.
+
+\begin{description}
+  \item[Presledki:] Za piko \LaTeX običajno vstavi daljši presledek kot ponavadi, kar je na koncu
+    stavka zaželeno, na koncu okrajšav pa ne.  Zato je potrebno za okrajšavami vstaviti trdi
+    presledek \ltxs{\ }. Poleg tega imamo na voljo tudi nedeljivi presledek \verb|~| (zapisan z
+    vijugico), na katerem \LaTeX ne bo dovolil preloma vrstice. Ta se lahko uporablja za
+    okrajšavami, vedno pa se ga uporablja tudi pred sklici. Obratno, če imamo piko za
+    veliko črko, \LaTeX\ ne bo vstavil večjega presledka, vendar mu lahko z ukazom \verb|\@| povemo,
+    da ta pika končuje stavek. Primer napačne in pravilne rabe \verb|\@| in \ltxs{\ } vidimo spodaj:
+
+    \scalebox{1.5}{``Rad imam BASIC. Verjetno sem starejši od npr. 50 let.''}
+
+    \scalebox{1.5}{``Rad imam BASIC\@. Verjetno sem starejši od npr.\ 50 let.''}
+
+    Pravilno pisanje okrajšav je torej \ltxs{npr.\ tako} ali \ltx{npr.~tako}. Enako velja za datume.
+    Nedeljiv presledek se piše tudi npr.~pri prof.~Golob: \ltx{prof.~Golob}.
+
+  Daljše presledke za piko lahko izklopimo z ukazom \ltx{\frenchspacing}.
+
+  \item[Odstavki:] Nov odstavek privzeto ne preskoči nič prostora, naslednji je le zamaknjen noter.
+    To lahko kontroliramo z dolžinama \ltx{\parskip} in \ltx{\parindent}. S kombinacijo ukazov
+    \begin{minted}[linenos]{latex}
+      \setlength{\parskip}{12pt}
+      \setlength{\parindent}{0pt}
+    \end{minted}
+    lahko \LaTeX{} pripravimo do tega, da pušča pod ostavki 12pt prostora in jih ne zamika, podobno
+    kot Word. Če zgolj enega ostavka ne želimo zamakniti, uporabimo \ltx{\noindent}. Pri prelomu
+    vrstice lahko kot opcijski argument povemo, koliko prostora naj spusti, npr.\ \ltx{\\[12pt]}
+
+    Preostale dolžine, ki se uporabljajo so še \ltx{\lineskip}, \ltx{\linewidth}, \ltx{\textwidth},
+    \ltx{\pagewidth} (in \verb|height| verzije).
+
+  \item[Poljuben prazen prostor:] Za vstavljanje praznega prostora v horizontalni ali vertikalni
+    smeti lahko uporabimo ukaza \ltx{\hspace} in \ltx{\vspace}, kot npr.~\ltx{\hspace{10pt}}.
+    Prazen prostor se ne vstavi če smo na robu strani. Če želimo vstavljanje praznega prostora tudi
+    v tem primeru, uporabimo \ltx{\hspace*}.
+
+  \item[Raztegljiv prazen prostor:] vstavimo lahko tudi prostor, ki se raztegne, kolikor ima
+    prostora na strani. To naredimo z \ltx{\hfill} in \ltx{\vfill} ali \ltx{\hspace*{\fill}} in
+    \ltx{\vspace*{\fill}}. Zvezdica ima enak pomen kot zgoraj.
+    To je uporabno, če želimo nekaj poravnati na sredino strani vertikalno, recimo na naslovnici:
+
+    \begin{minted}[linenos]{latex}
+      Univerza v Ljubljani
+      \vfill
+      Naslov diplome \\
+      Avtor diplome
+      \vfill
+      13.\ 4.\ 2018
+    \end{minted}
+
+    ali pa v vrstici desno pri glavi uradnega pisma:
+
+    \begin{minted}[linenos]{latex}
+      Fakulteta za matematiko in fiziko \\
+      Jadranska 19 \\
+      1000 Ljubljana \hfill 20.\ 3.\ 2018 \\
+    \end{minted}
+\end{description}
+
+\subsection{Seznami}
+Za urejene sezname imamo okolje \texttt{enumerate}, za neurejene pa \texttt{itemize}.
+Za opisne sezname imamo \texttt{description}. Nov element seznama začnemo z ukazom \ltx{\item},
+ki za opcijski argument sprejme besedilo oz.\ znak za začetek te točke seznama.
+
+\begin{minipage}[t]{0.5\linewidth}
+\begin{minted}[linenos]{latex}
+  \begin{enumerate}
+    \item Prvi element.
+    \item Drugi element. Seznam ima lahko
+      več vrstic.
+
+      In več odstavkov.
+
+    \item Lahko ima tudi gnezdene sezname:
+      \begin{itemize}
+        \item Gnezned element 1
+        \item[$\diamond$] Gnezden element 2
+      \end{itemize}
+  \end{enumerate}
+\end{minted}
+\end{minipage}
+\begin{minipage}[t]{0.45\linewidth}
+\begin{enumerate}
+  \item Prvi element.
+  \item Drugi element. Seznam ima lahko
+    več vrstic.
+
+    In več odstavkov.
+
+  \item Lahko ima tudi gnezdene sezname:
+    \begin{itemize}
+      \item Gnezned element 1
+      \item[$\diamond$] Gnezden element 2
+    \end{itemize}
+\end{enumerate}
+\end{minipage}
+
+\vspace{1ex}
+
+Več opcij glede seznamov ponuja paket \texttt{enumerate}.
+
+\subsection{Ločila in opombe}
+Vezaj, \emph{pomišljaj} in dolgi pomišljal naredimo z ukazi \verb|-|, \verb|--| in \verb|---|.
+
+\emph{Narekovaje} naredimo z pari \verb|``text''|, \verb|,,text''|, \verb|>>text<<|, ki izgledajo kot
+``text'', ,,text'', >>text<<. Pozor: noben od znakov v kodi ni znak za dvojni narekovaj. Večina
+urejevalnikov ima na voljo možnost, da se nastavi ``smart quotes'', ki ob znaku za dvojni narekovaj
+vstavijo primerne narekovaje. Podobno naredimo enojne narekovaje \verb|`text'| za `text'.
+
+Tri pike naredimo z ukazom \ltx{\dots}: \dots in ne tako, da napišemo ... ali . . .
+
+Znak \textregistered{} vstavimo z \ltx{\textregistered}.
+
+\emph{Naglase} naredimo z ukazi \verb|\'{o}|, \verb|\`{o}'|, \verb|\"{o}|, \verb|\^{o}|, \verb|\~{o}| za
+\'{o}, \`{o}, \"{o}, \^{o}, \~{o}. Lahko jih napišemo tudi direktno v besedilo.
+Za \"o je uporabljen znak za dvojni narekovaj. Pišemo jih lahko tudi na kratko kot \verb|\'o|.
+
+\emph{Opombe} pod črto naredimo z ukazom \ltx{\footnote{besedilo}}, kot tukaj.\footnote{Več ukazov za naglase lahko
+najdete na \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters\#Escaped_codes}.}
+
+\emph{Ligature} so skupki več znakov, ki so povezani, za lažje branje. \LaTeX{} jih naredi
+avtomatsko, kot npr.\ tukaj:
+\scalebox{4}{fiz}
+Lahko jih prekinemo, tako da med črke vstavimo prazno škatlico: \ltx{f\mbox{}iz}:
+\scalebox{4}{f\mbox{}iz}.
+
+\section{Matematična okolja}
+Za pisanje matematičnih formul imamo dva načina: tekstovnega in vrstičnega (med njima lahko tudi
+ročno preklapljamo z \ltx{\textstyle} in \ltx{\displaystyle}).
+
+Tekstovni način začnemo in končamo z znakom \verb|$| in vse vmes se izpiše v matematičnem načinu.
+\ltx{Naj bo $n$ naravno število} izpiše ``Naj bo $n$ naravno število''. Vsaka spremenljivka mora
+biti napisana v matematičnem načinu, sicer izgleda narobe. Primer:
+
+V $i$-ti vrstici algoritem obravnava število $a$.
+V i-ti vrstici algoritem obravnava število a.
+
+Vrstični način naredimo z parom \verb|\[ \]|,\footnote{Včasih se je uporabljalo \texttt{\$\$ \$\$}, vendar
+ima ta kombinacija lahko težave. Več:
+\url{https://tex.stackexchange.com/questions/503/why-is-preferable-to}}
+kar postavi enačbo v svojo vrstico. Npr.~\ltx{\[ a+b = c \]} izpiše
+\[
+ a + b = c
+\]
+
+Za številčene enačbe uporabljamo okolje \texttt{equation}, kot \ltx{\begin{equation} a+b =
+c \end{equation}}:
+\begin{equation}
+  a + b = c
+  \label{eq:sample}
+\end{equation}
+
+V enačbah ne sme biti praznih vrstic, ker bi začele nov odstavek.
+
+\emph{Podpisane} in \emph{nadpisane} znake dobimo kot \ltx{$a^b$} in \ltx{$a_b$}. Za več kot en nadpisan znak je
+potrebno uporabiti zavite oklepaje: \ltx{$2^{10}$}, sicer dobimo $2^10$.
+
+\emph{Neenakosti} pišemo z \ltx{$a < b$}, \ltx{$a > b$}, \ltx{$a \leq b$}, \ltx{$a \geq b$}, \ltx{$a
+\neq b$}, \ltx{$a \approx b$}: $a<b, a>b, a\leq b, a\geq b, a\neq b, a \approx b$.
+
+\emph{Elementarne funkcije} so vgrajene in jih pišemo kot \\
+\ltx{$\sin x, \log(x+y), \sqrt{3}, \sqrt[7]{x+\frac{2 \cdot z}{y}}$}:
+$\sin x, \log(x+y), \sqrt{3}, \sqrt[7]{x+\frac{2 \cdot z}{y}}$.
+
+Primerjava: $\sin x$, $sinx$, $\sin(x)$, $sin(x)$.
+
+Če naša izbrana funkcija, npr.~sinc, ni definirana, jo lahko za enkratno uporabo pišemo z ukazom
+\ltx{\operatorname{sinc}}, kar zagotovi pravilno računanje presledkov okoli nje,
+če pa jo uporabljamo večkrat, se jo splača v preambuli definirati z
+\ltx{\DeclareMathOperator{\sinc}{sinc}}, da jo lahko uporabljamo kot $\operatorname{sinc} x$.
+
+\emph{Oklepaje} napišemo kot \ltx{$(x), [x], \{x\}, |x|, \|x\|$} za $(x), [x], \{x\}, |x|, \|x\|$.
+Uporaba \ltx{$||x||$} da napačne rezultate, primerjava $\|x\|$ in $||x||$.
+Oklepaje lahko tudi skaliramo z \ltx{$\left(\frac{a}{b}\right)$} za
+\[
+  \left(\frac{a}{b}\right) \quad \text{namesto}  \quad (\frac{a}{b}).
+\]
+
+Velike operatorje, kot so
+\[
+  \sum_{i=1}^n \frac{1}{i} \quad \int_a^b f(x)\,dx \quad \max_{x \in [a, b]} f(x)
+  \quad \lim_{n\to\infty} \sqrt[n]{n} \quad \bigcup_{i = 1}^\infty [i, i+1] \times \emptyset
+\]
+pišemo z
+\begin{minted}[linenos]{latex}
+  \sum_{i=1}^n \frac{1}{i}
+  \int_a^b f(x)\,dx
+  \max_{x \in [a, b]} f(x)
+  \lim_{n\to\infty} \sqrt[n]{n}
+  \bigcup_{i = 1}^\infty [i, i+1] \times \emptyset
+\end{minted}
+
+\textbf{Grške} črke pišemo s primernimi ukazi: \\[6pt]
+\begin{tabular}[h]{ll|ll}
+$\alpha A$                & \ltx{\alpha A}                & $\nu N $                  & \ltx{\nu N }                 \\
+$\beta B$                 & \ltx{\beta B}                 & $\xi \Xi $                & \ltx{\xi \Xi }               \\
+$\gamma \Gamma$           & \ltx{\gamma \Gamma}           & $o O $                    & \ltx{o O }                   \\
+$\delta \Delta$           & \ltx{\delta \Delta}           & $\pi \varpi \Pi $         & \ltx{\pi \varpi \Pi }        \\
+$\epsilon \varepsilon E$  & \ltx{\epsilon \varepsilon E}  & $\rho\varrho P $          & \ltx{\rho\varrho P }         \\
+$\zeta Z$                 & \ltx{\zeta Z}                 & $\sigma \varsigma \Sigma$ & \ltx{\sigma \varsigma \Sigma}\\
+$\eta H$                  & \ltx{\eta H}                  & $\tau T $                 & \ltx{\tau T }                \\
+$\theta \vartheta \Theta$ & \ltx{\theta \vartheta \Theta} & $\upsilon \Upsilon $      & \ltx{\upsilon \Upsilon }     \\
+$\iota I$                 & \ltx{\iota I}                 & $\phi \varphi \Phi $      & \ltx{\phi \varphi \Phi }     \\
+$\kappa K$                & \ltx{\kappa K}                & $\chi X $                 & \ltx{\chi X }                \\
+$\lambda \Lambda$         & \ltx{\lambda \Lambda}         & $\psi \Psi $              & \ltx{\psi \Psi }             \\
+$\mu M$                   & \ltx{\mu M}                   & $\omega \Omega $          & \ltx{\omega \Omega }         \\
+\end{tabular} \\
+
+\textbf{Oznake} nad črkami dobimo z ukazi
+\ltx{\bar{z} \vec{\imath} \hat{u} \dot{x} \ddot{y} \tilde{k}}:
+$\bar{z}$, $\vec{\imath}$, $\hat{u}$, $\dot{x}$, $\ddot{y}$, $\tilde{k}$.
+Ukaza \ltx{\imath} in \ltx{\jmath} naredita $\imath$ in $\jmath$ brez pike, da lahko nanju damo
+oznake.
+
+Obstaja tudi ogromno drugih simbolov, ki se jih ponavadi najde iskanjem po spletu oblike ``latex
+what is the correct symbol for [insert here]'' ali uporabo celotne tabele simbolov~\cite{a4symb}
+ali orodja za prepoznavo simbolov~\cite{detexify}.
+
+\subsection{Presledki}
+Presledki v matematičnem načinu delujejo drugače kot v običajnem tekstovnem načinu.  \LaTeX\ ignorira
+vse presledke, in se sam odloči, koliko presledka dati okoli črk in opratorjev.
+
+Za lastno vstavljanje presledkov imamo na voljo čedalje večje presledke \ltx{\!}, \ltx{\,},
+\ltx{\:}, \ltx{\;}, \ltx{\quad}, \ltx{\qquad}.  Prvi je negativen, \ltx{\,} je majhen presledek,
+primeren za npr.~razdaljo med $f(x)$ in $dx$ v integralu $\int f(x)\,dx$, zadnji pa je precej dolg
+(dvakrat fontsize). Enak presledek kot med tekstom dobimo z \ltxs{\ }.
+
+\subsection{Poravnava in večji izrazi}
+\textbf{Poravnane enačbe} dobimo z okoljem \texttt{align} in \texttt{align*}, pri čemer ukazi z zvezdico
+kot ponavadi označujejo verzijo brez številčenja.
+Uporaba:
+\begin{minted}[linenos]{latex}
+\begin{align*}
+  \nabla \cdot \vec{B} &= 0 \\
+  \nabla \times \vec{E} &= -\frac{1}{c} \frac{\partial B}{\partial t}
+\end{align*}
+\end{minted}
+Rezultat:
+\begin{align*}
+ \nabla \cdot \vec{B} &= 0 \\
+ \nabla \times \vec{E} &= -\frac{1}{c} \frac{\partial B}{\partial t}
+\end{align*}
+
+Enačbe so poravnane na znak $\&$, znak \verb|\\| pa označuje novo vrstico.
+
+Opomba: v zadnji vrstici align ne smemo imeti \verb|\\|, sicer bo po enačbah dodaten presledek. Prav
+tako pred in po okolju ne smemo imeti praznih vrstic.
+
+\emph{Matrike} pišemo z okolji tipa \texttt{matrix} pri čemer so definirana okolja z začetnimi
+črkami \texttt{pbBvV} za različne vrste oklepajev.
+\begin{multicols}{2}
+  \[
+    \begin{bmatrix}
+      a & b \\
+      c & d
+    \end{bmatrix}^{100}
+    \begin{Vmatrix}
+      1 & \cdots & n \\
+      \vdots & \ddots & \vdots \\
+      n & \cdots & 1
+    \end{Vmatrix}
+  \]
+  \columnbreak
+\begin{minted}[linenos]{latex}
+  \[
+    \begin{bmatrix}
+      a & b \\
+      c & d
+    \end{bmatrix}^{100}
+    \begin{Vmatrix}
+      1 & \cdots & n \\
+      \vdots & \ddots & \vdots \\
+      n & \cdots & 1
+    \end{Vmatrix}
+  \]
+\end{minted}
+\end{multicols}
+
+\emph{Funkcije} z več možnosti definiramo s pomočjo okolja \texttt{cases}.
+\begin{multicols}{2}
+  \begin{align*}
+    f&\colon\R \to \R \\
+    f(x) &=
+    \begin{cases}
+      x, & x > 0 \\
+      -x & x \leq 0
+    \end{cases}
+  \end{align*}
+  \columnbreak
+\begin{minted}[linenos]{latex}
+  \begin{align*}
+    f&\colon\R \to \R \\
+    f(x) &=
+    \begin{cases}
+      x, & x > 0 \\
+      -x & x \leq 0
+    \end{cases}
+  \end{align*}
+\end{minted}
+\end{multicols}
+
+\subsection{Oblika besedila}
+V matematičnem načiu imamo za pisanje besedila, kot da bi bili v navadnem načinu,
+na voljo ukaz \ltx{\text}. Znotraj ukaza \ltx{\text} lahko ponovno uporabljamo \verb|$| in
+znotraj zopet \ltx{\text}, kolikorkrat želimo.
+Poleg slogov naštetih v razdelku~\ref{sec:font-style},
+imamo na voljo še nekaj posebnih slogov, samo za matematični način.
+
+Glavni so \ltx{\mathcal}, ki ponuja pisane (calligraphic) črke, kot so $\mathcal{LPQHUVI}$,
+\ltx{\mathbb}, ki ponuja dvojne (blackboard bold) črke, kot $\mathbb{NRCZAH}$ in
+\ltx{\mathfrak}, ki ponuja ``fraktur'' verzijo: $\mathfrak{DFOSRL}$ (DFOSRL).
+Paket \verb|mathrsfs| ponuja ``script'' verzijo črk, kot so $\mathscr{IMJSLY}$ (IMJSLY).
+
+\section{Slike in tabele}
+\subsection{Vstavljanje slik}
+
+Za delo s slikami potrebujemo paket \verb|graphicx|. Slike vključimo z ukazom
+\ltx{\includegraphics}, \LaTeX\ pa jih obravnava kot črke enake velikosti, kot je velikost vključene
+slike:
+
+To je stavek, kjer smo na sre\includegraphics{slike/surprise_small.png}dini vstavili sliko.
+
+Velikost slike lahko kontroliramo z neobveznimi argumenti, npr.: \\
+\ltx{\includegraphics[width=0.5\linewidth]{slike/surprise.png}}. \\
+V tem primeru se pogosto uporablja relativne velikosti, kot zgoraj, lahko pa se predpiše tudi
+velikost v pikslih ali centimetrih. Višino lahko kontroliramo s parametrom \verb|height|,
+na voljo pa imamo tudi veliko drugih možnosti za zrcaljenje, obrezovanje ipd.
+
+Če je možno, naj bodo vključene slike \emph{vektorske}, (format \verb|pdf|, \verb|eps|), saj
+se bodo tako skalirale brez izgub. Vključite pa lahko tudi najpogostejše formate bitnih slik, kot
+npr.\ \verb|png| in \verb|jpg|.
+
+\subsection{Vstavljanje tabel}
+Table naredimo z okoljem \verb|tabular| in jih podobno kot slike \LaTeX\ obravnava kot velike črke.
+Primer tabele in njene izvorne kode:
+
+\begin{multicols}{2}
+  \begin{minted}{latex}
+    \begin{tabular}{l|l|r||c} \hline
+      1.\ naloga & 2.\ naloga & 3.\ naloga
+        & Skupaj \\ \hline \hline
+      1 & 0.75 & 0.25 & 2 \\
+      0.5 & 0.25 & 0.25 & 1 \\
+      0.5 & 0 & 0.25 & 0.75 \\
+      0.25 & 1 & 2 & 3.25 \\
+      1 & 2 & 3 & 6 \\ \hline
+    \end{tabular}
+  \end{minted}
+  \columnbreak
+  \begin{tabular}{l|l|r||c}
+    \hline
+    1.\ naloga & 2.\ naloga & 3.\ naloga & Skupaj \\ \hline \hline
+    1 & 0.75 & 0.25 & 2 \\
+    0.5 & 0.25 & 0.25 & 1 \\
+    0.5 & 0 & 0.25 & 0.75 \\
+    0.25 & 1 & 2 & 3.25 \\
+    1 & 2 & 3 & 6 \\ \hline
+  \end{tabular}
+\end{multicols}
+
+Kot pri matrikah, znaki \verb|&| ločujejo stolpce, znaki \verb|\\| pa označujejo nove vrstice.
+Ukaz \ltx{\hline} naredi horizontalno črto, vertikalne črte in poravnave stolpcev pa so podane kot
+prvi argument okolja \texttt{tabular}.
+
+Napisati je možno tudi mnogo bolj zapletene tabele, vendar je verjetno lažje uporabi kakšen
+generator \LaTeX\ kode, kot npr.~\cite{table-generator}.
+
+\subsection{Slike in tabele med besedilom}
+Ko običajno vstavljamo slike ali tabele, te plavajo med besedilom. Zato imamo na voljo okolji
+\verb|figure| in \verb|table|. Običajna koda za vstavljanje slike je:
+
+\begin{minted}[linenos]{latex}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\linewidth]{slike/its_something.jpg}
+  \caption{Primer vstavljanja slike.}
+  \label{fig:its-something}
+\end{figure}
+\end{minted}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\linewidth]{slike/its_something.jpg}
+  \caption{Primer vstavljanja slike.}
+  \label{fig:its-something}
+\end{figure}
+
+To naredi plavajočo sliko, ki jo bo \LaTeX\ poskušal postaviti v dokumentu tja, kjer je definirana
+(to pomeni neobvezni parameter \verb|h| -- here; druge možnosti so \verb|t| -- top (na vrhu strani), \verb|b| --
+bottom, \verb|p| -- posebna stran). Ukaz \ltx{\centering} vse znotraj okolja \texttt{figure}
+postavi na sredino. Nato se vključi slika, pod sliko pa je njen opis. Temu sledi oznaka slike,
+uporabljena zgolj interno za sklicevanje. Pozor: ukazov \ltx{\caption} in \ltx{\label} ne smemo
+zamenjati med seboj, sicer sklicevanje ne bo delovalo.
+
+Podobno velja za tabele, kjer plavajočo tabelo naredimo z okoljem \texttt{table}.
+Pomen vseh ukazov je enak kot pri okolju \texttt{figure}.
+Običajen primer uporabe:
+\begin{minted}[linenos]{latex}
+\begin{table}[t]
+  \centering
+  \begin{tabular}{l|l|r||c}
+    % podatki od zgoraj
+  \end{tabular}
+  \caption{Primer vstavljanja tabele.}
+  \label{tab:primer}
+\end{table}
+\end{minted}
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}{l|l|r||c}
+    \hline
+    1.\ naloga & 2.\ naloga & 3.\ naloga & Skupaj \\ \hline \hline
+    1 & 0.75 & 0.25 & 2 \\
+    0.5 & 0.25 & 0.25 & 1 \\
+    0.5 & 0 & 0.25 & 0.75 \\
+    0.25 & 1 & 2 & 3.25 \\
+    1 & 2 & 3 & 6 \\ \hline
+  \end{tabular}
+  \caption{Primer vstavljanja tabele.}
+  \label{tab:primer}
+\end{table}
+
+\LaTeX\ pogosto ne postavi slik in tabel tja, kamor bi si jih želeli, ker tam ne
+vidi dovolj prostora. V praksi se med pisanjem dokumenta s tem ne smemo
+obremenjevati, saj se lahko veliko še spremeni, preden končamo. \emph{Na koncu} lahko
+popravimo lokacije s spreminjanem velikosti slik ali tabel, s spreminjanem
+položaja v kodi in, v skrajnem primeru, z morebitnim kontroliranjem prostora z
+\ltx{\vspace}. Če je slik res veliko, lahko tudi vstavimo prelom strani, ki pred
+začetkom nove strani vstavi še vse do zdaj sprocesirane slike in tabele. To
+naredimo z ukazom \ltx{\clearpage} (z razliko od \ltx{\newpage}, ki samo gre na
+novo stran in ne pomaga pri tem, da bi vstavili kakšno sliko več).
+
+Paket \texttt{caption} omogoča več nadzora nad izgledom in pozicijo slik/tabel
+in pripadajočih napisov.
+
+\section{Sklicevanje in kazala}
+Avtomatko \emph{sklicevanje} v \LaTeX u predstavlja zelo močno orodje. Skličemo se
+lahko na vsak števec -- števcev pa je zelo veliko. \LaTeX ima števce za strani,
+razdelke, podrazdelke, enačbe, slike, tabele, oštevilčene sezname, \dots
+
+Oznako števca naredimo z ukazom \ltx{\label}, na oznako pa se skličemo z ukazom
+\ltx{\ref}. Ukaz \ltx{\label} si zapomni vrednost zadnjega števca, ki je bil
+spremenjen, za to običajno \ltx{\label} napišemo tik za ukazom, ki poveča kakšen
+števec. Za slike in tabele tako \ltx{\label} vstavimo tik za \ltx{\cation}, za
+razdelke tik za \ltx{\section}, pri seznamih tik za \ltx{\item}. Dodatno velja
+nenapisan dogovor, da se oznake poimenuje s predpono, ki pove, na kaj se oznaka
+nanaša: oznake za slike, se začnejo s \ltx{\label{fig:oznaka}}, oznake na tabele
+s \texttt{tab:}, oznake za razdelke s \texttt{sec:}, oznake za enačbe z
+\texttt{eq:}, oznake za elemente seznamov z \texttt{itm:}, oznake za algoritme z
+\texttt{alg:} in oznake za izseke izvorne kode z \texttt{lst:}. Uporaba teh oblik
+ni obvezna, je pa zelo uporabna pri velikih dokumentih, da mi (ali pa naš
+urejevalnik) lažje iščemo med obstoječimi oznakami.
+
+Na številčene elemente se vedno sklicujemo z \ltx{\ref} ali podobnimi ukazi,
+nikoli s konkretnimi številkami. Pred ukazom \ltx{\ref} moramo tudi običajno
+vstaviti nedeljiv presledek, da se sklic ne prelomi v novo vrstico. Pravilno
+sklicevanje na razdelek o obliki pisave, bi bilo tako: \\
+\ltx{O obliki pisave smo govorili v razdelku~\ref{sec:font-style}, kjer [se
+nadaljuje]}, \\ kar v dokumentu izgleda kot ``O obliki pisave smo govorili v
+razdelku~\ref{sec:font-style}, kjer [se nadaljuje]''. Pri tem smo tik po ukazu
+\ltx{\subsection{Velikost in oblika pisave}} napisali
+\ltx{\label{sec:font-style}}.
+
+Sklicevanje na \emph{stran}, kjer se nahaja oznaka, se naredi z ukazom \ltx{\pageref}.
+Sklicali bi se kot: \\
+\ltx{Slika~\ref{fig:its-something} na strani~\pageref{fig:its-something} je
+lepa.},
+kar v dokumentu izgleda kot: ``Slika~\ref{fig:its-something} na
+strani~\pageref{fig:its-something} je lepa.''
+
+Pri sklicevanju na enačbe, običajno uporabljamo okrogle oklepaje, kot npr.~pri
+enačbi~\eqref{eq:sample}. Sklic z avtomatskimi oklepaji okrog reference dobimo z
+ukazom \ltx{\eqref}. Sklic malo prej smo dobili z ukazom
+\ltx{\eqref{eq:sample}}, pri čemer smo pred takoj po \ltx{begin{equation}}
+  vstavili \ltx{\label{eq:sample}}.
+
+\subsection{Kazala}
+Kazalo vsebine vstavimo z ukazom \ltx{\tableofcontents}. Uporabimo lahko še ukaza
+\ltx{\listoffigures} in \ltx{\listoftables}.
+
+Vnosi v kazalu slik in tabel so opisi pod slikami in tabelami. Če so ti
+predolgi, lahko uporabimo pri ukazu \ltx{caption}, neobvezen argument:
+\ltx{\caption[Kratek opis]{Daljši opis.}}, pri čemer se kratek opis pojavi v
+kazalu, dolg opis pa pod sliko/tabelo.
+
+Vsi izrazi so že prevedeni v slovenščino s paketom \texttt{babel}. Če nam kakšen
+prevod ni všeč, ga lahko spremenimo npr.~iz privzetega ``Slike'' na ``Kazalo slik''
+z \\ \ltx{\addto\captionsslovene{\renewcommand\listfigurename{Kazalo slik}}}.
+
+Več možnosti za oblikovanje kazala ponuja paket \texttt{tocloft}.
+
+\section{Literatura}
+
+Za literaturo se v večjih dokumentih uporablja sistem
+$\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$, ki omogoča
+avtomatsko generiranje seznama referenc s predpisanim stilom (obstaja
+inštitucije ponudijo svojega, tudi FMF). Za kratko navajanje na roko
+pa imamo na voljo okolje \texttt{thebibliography}.
+
+Okolje se uporablja takole:
+
+\begin{minted}[linenos]{latex}
+\begin{thebibliography}{99}
+  \bibitem{oznaka} Poljubno besedilo.
+  \bibitem{latex} Lamport, Leslie. \textit{LaTeX: A Document
+    Preparation System, 2/e}. Pearson Education India, 1994. URL:
+    \url{http://cds.cern.ch/record/270275/files/9780201529838_TOC.pdf}
+\end{thebibliography}
+\end{minted}
+
+Primer uporabe lahko vidite na koncu tega dokumenta.
+Na literaturo se sklicujemo z ukazom \ltx{\cite{oznaka}}.
+Kot pri referencah, je tudi tukaj prej pravilno vstaviti nedeljiv presledek
+$\sim$. Sklicujemo se lahko na več virov naenkrat, kot
+npr.\ \ltx{\cite{a4symb,detexify}}, kar izgleda kot~\cite{a4symb,detexify}.
+Citiramo lahko tudi bolj natančno, tako da v oglatih oklepajih podamo dodatno
+vsebino: \ltx{\cite[str.\ 12]{a4symb}} izpiše~\cite[str.\ 12]{a4symb}.
+
+\section{Razno (algoritmi, izvorna koda, več stolpcev)}
+Za pisanje algoritmov priporočam paketa \texttt{algorithm} in
+\texttt{algorithmicx} (potrebujete oba). Za vključevanje in barvanje izvorne
+kode (kot v tem dokumentu) je uporabljen paket \texttt{minted}.
+Za več stolpcev se lahko uporabi paket \texttt{multicols}.
+
+\begin{thebibliography}{99}
+  \bibitem{latex} Lamport, Leslie. \textit{LaTeX: A Document
+    Preparation System, 2/e}. Pearson Education India, 1994. URL:
+    \url{http://cds.cern.ch/record/270275/files/9780201529838_TOC.pdf}
+  \bibitem{a4symb} Scott Pakin. \textit{The Comprehensive \LaTeX\ Symbol List}.
+    URL: \url{http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}
+  \bibitem{latexeng} Tobias Oetiker. \textit{The Not So Short
+    Introduction to \LaTeX\ $2\varepsilon$}. URL: \url{https://tobi.oetiker.ch/lshort/lshort.pdf}
+  \bibitem{latexslo} Bor Plestenjak (prevod in priredba).  \textit{Ne najkrajši
+    uvod v\LaTeX\ $2\varepsilon$}.
+    URL: \url{http://www-lp.fmf.uni-lj.si/plestenjak/vaje/latex/lshort.pdf}
+  \bibitem{detexify} Daniel Kirsch. \textit{Detexify \LaTeX\ handwritten symbol recognition.} URL: \url{http://detexify.kirelabs.org/classify.html}
+  \bibitem{table-generator} \textit{Tables Generator}. URL: \url{https://www.tablesgenerator.com/}
+\end{thebibliography}
+
+\end{document}
+% vim: syntax=tex
+% vim: spell spelllang=sl
+% vim: foldlevel=99
+% Latex template: Jure Slak, jure.slak@fmf.uni-lj.si

@@ -59,3 +59,9 @@ _build/
 
 # PyBuilder
 target/
+
+# LaTeX
+*.aux
+_minted*
+*.log
+*.toc
