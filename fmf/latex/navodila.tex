@@ -80,7 +80,7 @@ vsebina
 \end{minted}
 
 Na vrhu je definiran tip dokumenta. Običajno se za manjše dokumente uporablja article, obstajajo pa
-tudi drugi, pogosto tudi dani s strani inštitucije, za katero dokument pišete.
+tudi drugi tipi, ponavadi tudi dani s strani inštitucije, za katero se dokument piše.
 Temu sledi \emph{preambula}, del dokumenta, ki ni vsebinski, ampak je namenjen različnim
 nastavitvam. Nato sledi značka za začetek dokumenta, sledi vsebina in
 značka za konec dokumenta. Vse kar sledi tej znački, prevajalnik ignorira.
@@ -94,15 +94,15 @@ Latex pozna ukaze in okolja:
   \item \emph{ukazi} so oblike \ltx{\ukaz}, \ltx{\ukaz{arg1}}, \ltx{\ukaz{arg1}{arg2}}, itd.\ ali \\
     \ltx{\ukaz[arg]}, \ltx{\ukaz[arg]{arg}}, \ltx{\ukaz[arg]{arg1}{arg2}}, itd.,
     kjer so argumenti \texttt{arg1}, \texttt{arg2} v zavitih oklepajih
-    obvezni, argument v oglatih pa neobvezni in jih lahko izpustimo.
-  \item \emph{okolja} so oblike \ltx{\begin{okolje} ... \end{okolje}}, \\
-    \ltx{\begin{okolje}{arg1} ... \end{okolje}}, itd.\ ali \\
-    \ltx{\begin{okolje}[arg] ... \end{okolje}}, \\
+    obvezni, argument \texttt{arg} v oglatih pa neobvezen in ga lahko izpustimo.
+  \item \emph{okolja} so oblike \ltx{\begin{okolje} ... \end{okolje}},
+    \ltx{\begin{okolje}{arg1} ... \end{okolje}}, itd.\ ali
+    \ltx{\begin{okolje}[arg] ... \end{okolje}},
     \ltx{\begin{okolje}[arg]{arg1} ... \end{okolje}}, itd., kjer kot prej v zavitih oklepajih
-    navajamo obvezne argumente, v oglatih pa neobvezne.
-  \item poznamo tudi \emph{stare \TeX{} ukaze}, ki so oblike \ltx{{\ukaz }} in veljajo od ukaza do
-    konca trenutnih zavitih oklepajev ali okolja. Kodo znotraj okolji ponavadi zamikamo za 2
+    navajamo obvezne argumente, v oglatih pa neobvezne. Kodo znotraj okolji ponavadi zamikamo za 2
     presledka ali pa sploh ne.
+  \item poznamo tudi \emph{stare \TeX{} ukaze}, ki so oblike \ltx{{\ukaz }} in veljajo od ukaza do
+    konca trenutnih zavitih oklepajev ali okolja.
 \end{itemize}
 
 \emph{Komentarje} pišemo z znakom \%. Prevajalnik ignorira vse od znaka \% do konca vrstice.
@@ -138,19 +138,19 @@ Standardna preambula vsebuje:
   urlcolor=black, pdfencoding=unicode]{hyperref}
 \end{minted}
 
-Ukazu \ltx{\documentclass} lahko podamo možnosti za velikost pisave in papirja. Vključimo pakete za
+Ukazu \ltx{\documentclass} smo podali možnosti za velikost pisave in papirja. Vključimo pakete za
 delo z UTF-8 znaki, podporo slovenščini, osnovne matematične pakete in pakete za podporo slik.  S
 paketom \verb|geometry| nastavimo odmike na robu. Paket \verb|hyperref| poskrbi za to, da lahko
 kliknemo na sklice in citate  v PDF datoteki in da ima ta ob strani strukturo dokumenta.  To lahko
 vidite tudi v tem dokumentu.
 
-\section{Osnovna struktura in oblikovanje dokumenta}
-Osnovno logično strukturo definiramo z ukazi \ltx{\section}, \ltx{\subsection} in
+\section{Struktura in oblikovanje dokumenta}
+Osnovno logično strukturo razdelkov definiramo z ukazi \ltx{\section}, \ltx{\subsection} in
 \ltx{\subsubsection}. Obstajajo tudi verzije ukazov z zvezdico, \ltx{\section*} itd., ki poglavij ne
 številčijo.
 
-Besedilo pišemo prosto, pri čemer \LaTeX{} ignorira nove vrstice in zamike presledke v besedilu.
-Sam tudi deli besede. Če katere besede ne zna deliti, mu lahko pomagamo z ukazom
+Besedilo pišemo prosto, pri čemer \LaTeX{} ignorira prelome vrstic,  zamike in presledke v besedilu.
+Sam tudi deli besede na koncu vrstice. Če katere besede ne zna deliti, mu lahko pomagamo z ukazom
 \ltx{\hyphenation{ra-ču-nal-nik}} v preambuli.
 \emph{Nov odstavek} začnemo tako, da spustimo eno ali več praznih vrstic. Z ukazom \ltx{\\} ali
 \ltx{\newline} lahko na silo začnemo novo vrstico, z ukazom \ltx{\newpage} pa novo stran.
@@ -169,8 +169,8 @@ Ta ukaza se uporablja sorazmerno redko.
 \end{minted}
 
 \emph{Stil strani} lahko nastavljamo z ukazom \ltx{\pagestyle}, ki je najbolj pogosto poklican z
-argumentom \texttt{empty} ali \texttt{plain}. Če želimo stil spremeniti samo za eno stran, uporabimo
-ukaz \ltx{\thispagestyle}.
+argumentoma \texttt{empty} ali \texttt{plain}. Če želimo stil spremeniti samo za eno stran, uporabimo
+ukaz \ltx{\thispagestyle}. Za naslovnice se pogosto uporabi \ltx{\thispagestyle{empty}}.
 
 Besedilo lahko poravnamo levo, desno ali sredinsko z okolji \verb|flushleft|, \verb|flushright| in
 \verb|center|.
@@ -193,7 +193,7 @@ Za velikost pisave imamo na voljo stare \TeX{} ukaze: \\
   \ltx{{\tiny         Primer besedila}} & {\tiny         Primer besedila} \\
 \end{tabular} \\[\baselineskip]
 
-\noindent Za obliko pisave imamo na voljo naslednje nove \LaTeX{} ukaze: \\
+\noindent Za obliko pisave imamo na voljo naslednje \LaTeX{} ukaze: \\
 
 \begin{tabular}[h]{lll}
   Roman (serif): & \ltx{\textrm{Primer besedila}} & \textrm{Primer besedila} \\
@@ -229,9 +229,14 @@ Praviloma se \LaTeX u pusti, da se sam določa, kam postavi stvari in koliko pro
     \scalebox{1.5}{``Rad imam BASIC\@. Verjetno sem starejši od npr.\ 50 let.''}
 
     Pravilno pisanje okrajšav je torej \ltxs{npr.\ tako} ali \ltx{npr.~tako}. Enako velja za datume.
-    Nedeljiv presledek se piše tudi npr.~pri prof.~Golob: \ltx{prof.~Golob}.
+    Nedeljiv presledek se piše tudi npr.~pri prof.~Golob: \ltx{prof.~Golob} in njegova uporaba je
+    na splošno precej pogosta.
 
   Daljše presledke za piko lahko izklopimo z ukazom \ltx{\frenchspacing}.
+
+  Če uporabimo nek ukaz, npr. \ltx{\LaTeX}, po njem \LaTeX\ ne bo avtomatsko vstavil presledka, da
+  lahko napišemo npr.\ ``\ltx{v \LaTeX u lahko}'', kar se prevede v ``v \LaTeX u lahko''. Če želimo
+  presledek, je potrebno napisati \ltx{\LaTeX{}} ali \ltxs{\LaTeX\ }.
 
   \item[Odstavki:] Nov odstavek privzeto ne preskoči nič prostora, naslednji je le zamaknjen noter.
     To lahko kontroliramo z dolžinama \ltx{\parskip} in \ltx{\parindent}. S kombinacijo ukazov
@@ -247,9 +252,11 @@ Praviloma se \LaTeX u pusti, da se sam določa, kam postavi stvari in koliko pro
     \ltx{\pagewidth} (in \verb|height| verzije).
 
   \item[Poljuben prazen prostor:] Za vstavljanje praznega prostora v horizontalni ali vertikalni
-    smeti lahko uporabimo ukaza \ltx{\hspace} in \ltx{\vspace}, kot npr.~\ltx{\hspace{10pt}}.
+    smeti lahko uporabimo ukaza \ltx{\hspace} in \ltx{\vspace}, kot npr.~\ltx{\hspace{10pt}} ali
+    \ltx{\vspace{-2cm}}.
     Prazen prostor se ne vstavi če smo na robu strani. Če želimo vstavljanje praznega prostora tudi
-    v tem primeru, uporabimo \ltx{\hspace*}.
+    v tem primeru, uporabimo \ltx{\hspace*}. Če se zalotite, da uporabljate veliko ukazov
+    \ltx{\hspace} ali \ltx{\vspace}, najbrž nekaj počnete narobe.
 
   \item[Raztegljiv prazen prostor:] vstavimo lahko tudi prostor, ki se raztegne, kolikor ima
     prostora na strani. To naredimo z \ltx{\hfill} in \ltx{\vfill} ali \ltx{\hspace*{\fill}} in
@@ -319,7 +326,7 @@ Več opcij glede seznamov ponuja paket \texttt{enumerate}.
 \subsection{Ločila in opombe}
 Vezaj, \emph{pomišljaj} in dolgi pomišljal naredimo z ukazi \verb|-|, \verb|--| in \verb|---|.
 
-\emph{Narekovaje} naredimo z pari \verb|``text''|, \verb|,,text''|, \verb|>>text<<|, ki izgledajo kot
+\emph{Narekovaje} naredimo s pari \verb|``text''|, \verb|,,text''|, \verb|>>text<<|, ki izgledajo kot
 ``text'', ,,text'', >>text<<. Pozor: noben od znakov v kodi ni znak za dvojni narekovaj. Večina
 urejevalnikov ima na voljo možnost, da se nastavi ``smart quotes'', ki ob znaku za dvojni narekovaj
 vstavijo primerne narekovaje. Podobno naredimo enojne narekovaje \verb|`text'| za `text'.
@@ -347,15 +354,15 @@ ročno preklapljamo z \ltx{\textstyle} in \ltx{\displaystyle}).
 
 Tekstovni način začnemo in končamo z znakom \verb|$| in vse vmes se izpiše v matematičnem načinu.
 \ltx{Naj bo $n$ naravno število} izpiše ``Naj bo $n$ naravno število''. Vsaka spremenljivka mora
-biti napisana v matematičnem načinu, sicer izgleda narobe. Primer:
+biti napisana v matematičnem načinu, sicer izgleda narobe. Primerjava:
 
-V $i$-ti vrstici algoritem obravnava število $a$.
-V i-ti vrstici algoritem obravnava število a.
+``V $i$-ti vrstici algoritem obravnava število $a$.'' in ``V i-ti vrstici algoritem obravnava
+število a.''
 
-Vrstični način naredimo z parom \verb|\[ \]|,\footnote{Včasih se je uporabljalo \texttt{\$\$ \$\$}, vendar
+Enačbe v svoji vrstici naredimo s parom \verb|\[ \]|.\footnote{Včasih se je uporabljalo \texttt{\$\$ \$\$}, vendar
 ima ta kombinacija lahko težave. Več:
 \url{https://tex.stackexchange.com/questions/503/why-is-preferable-to}}
-kar postavi enačbo v svojo vrstico. Npr.~\ltx{\[ a+b = c \]} izpiše
+Npr.~\ltx{\[ a+b = c \]} izpiše
 \[
  a + b = c
 \]
@@ -379,15 +386,17 @@ potrebno uporabiti zavite oklepaje: \ltx{$2^{10}$}, sicer dobimo $2^10$.
 \ltx{$\sin x, \log(x+y), \sqrt{3}, \sqrt[7]{x+\frac{2 \cdot z}{y}}$}:
 $\sin x, \log(x+y), \sqrt{3}, \sqrt[7]{x+\frac{2 \cdot z}{y}}$.
 
-Primerjava: $\sin x$, $sinx$, $\sin(x)$, $sin(x)$.
+Primerjava med uporabo ukaza \ltx{$\sin$} in kar \ltx{$sin$}: $\sin x$, $sinx$, $\sin(x)$, $sin(x)$.
 
 Če naša izbrana funkcija, npr.~sinc, ni definirana, jo lahko za enkratno uporabo pišemo z ukazom
 \ltx{\operatorname{sinc}}, kar zagotovi pravilno računanje presledkov okoli nje,
 če pa jo uporabljamo večkrat, se jo splača v preambuli definirati z
-\ltx{\DeclareMathOperator{\sinc}{sinc}}, da jo lahko uporabljamo kot $\operatorname{sinc} x$.
+\ltx{\DeclareMathOperator{\sinc}{sinc}}, da jo lahko uporabljamo kot \ltx{\sinc x}.
 
-\emph{Oklepaje} napišemo kot \ltx{$(x), [x], \{x\}, |x|, \|x\|$} za $(x), [x], \{x\}, |x|, \|x\|$.
-Uporaba \ltx{$||x||$} da napačne rezultate, primerjava $\|x\|$ in $||x||$.
+\emph{Oklepaje} napišemo kot \ltx{$(x), [x], \{x\}, |x|, \|x\|, \langle x \rangle$} za $(x)$, $[x]$,
+$\{x\}$, $|x|$, $\|x\|$, $\langle x \rangle$.
+Uporaba \ltx{$||x||$} ali \ltx{$<x>$} da napačne rezultate, primerjava $\|x\|$ in $||x||$ ter $<x>$
+in $\langle x \rangle$.
 Oklepaje lahko tudi skaliramo z \ltx{$\left(\frac{a}{b}\right)$} za
 \[
   \left(\frac{a}{b}\right) \quad \text{namesto}  \quad (\frac{a}{b}).
@@ -427,11 +436,14 @@ $\mu M$                   & \ltx{\mu M}                   & $\omega \Omega $    
 \ltx{\bar{z} \vec{\imath} \hat{u} \dot{x} \ddot{y} \tilde{k}}:
 $\bar{z}$, $\vec{\imath}$, $\hat{u}$, $\dot{x}$, $\ddot{y}$, $\tilde{k}$.
 Ukaza \ltx{\imath} in \ltx{\jmath} naredita $\imath$ in $\jmath$ brez pike, da lahko nanju damo
-oznake.
+oznake. Pozor: če dajemo oznako nad več kot eno črko, se ta postavi na sredino, kar ni nujno
+zaželeno: primerjaj \ltx{\vec{p_j}} in \ltx{\vec{p}_j}: $\vec{p_j}$, $\vec{p}_j$. Pogoste je treba
+oznako dati samo na črko, dodatne okraske pa se napiše kasneje.
 
 Obstaja tudi ogromno drugih simbolov, ki se jih ponavadi najde iskanjem po spletu oblike ``latex
 what is the correct symbol for [insert here]'' ali uporabo celotne tabele simbolov~\cite{a4symb}
-ali orodja za prepoznavo simbolov~\cite{detexify}.
+ali orodja za prepoznavo simbolov~\cite{detexify}. Ne poskušajte simbolov napisati s pomočjo znakov
+na tipkovnici, ki izgledajo podobno, ampak poiščite pravi simbol.
 
 \subsection{Presledki}
 Presledki v matematičnem načinu delujejo drugače kot v običajnem tekstovnem načinu.  \LaTeX\ ignorira
@@ -443,8 +455,8 @@ primeren za npr.~razdaljo med $f(x)$ in $dx$ v integralu $\int f(x)\,dx$, zadnji
 (dvakrat fontsize). Enak presledek kot med tekstom dobimo z \ltxs{\ }.
 
 \subsection{Poravnava in večji izrazi}
-\textbf{Poravnane enačbe} dobimo z okoljem \texttt{align} in \texttt{align*}, pri čemer ukazi z zvezdico
-kot ponavadi označujejo verzijo brez številčenja.
+\textbf{Poravnane enačbe} dobimo z okoljema \texttt{align} in \texttt{align*}, pri čemer zvezdica
+kot ponavadi označuje verzijo brez številčenja.
 Uporaba:
 \begin{minted}[linenos]{latex}
 \begin{align*}
@@ -458,10 +470,11 @@ Rezultat:
  \nabla \times \vec{E} &= -\frac{1}{c} \frac{\partial B}{\partial t}
 \end{align*}
 
-Enačbe so poravnane na znak $\&$, znak \verb|\\| pa označuje novo vrstico.
+Enačbe so poravnane na znak \verb|&|, znak \verb|\\| pa označuje novo vrstico.
 
-Opomba: v zadnji vrstici align ne smemo imeti \verb|\\|, sicer bo po enačbah dodaten presledek. Prav
-tako pred in po okolju ne smemo imeti praznih vrstic.
+Opomba: v zadnji vrstici \texttt{align} ne smemo imeti \verb|\\|, sicer bo po enačbah dodaten prazen
+prostor. Prav tako pred in po okolju ne smemo imeti praznih vrstic, če ne želimo dodatnega praznega
+prostora ali nezaželenih zamikov.
 
 \emph{Matrike} pišemo z okolji tipa \texttt{matrix} pri čemer so definirana okolja z začetnimi
 črkami \texttt{pbBvV} za različne vrste oklepajev.
@@ -493,7 +506,7 @@ tako pred in po okolju ne smemo imeti praznih vrstic.
 \end{minted}
 \end{multicols}
 
-\emph{Funkcije} z več možnosti definiramo s pomočjo okolja \texttt{cases}.
+\emph{Funkcije} z več možnostmi definiramo s pomočjo okolja \texttt{cases}.
 \begin{multicols}{2}
   \begin{align*}
     f&\colon\R \to \R \\
@@ -516,30 +529,38 @@ tako pred in po okolju ne smemo imeti praznih vrstic.
 \end{minted}
 \end{multicols}
 
-\subsection{Oblika besedila}
-V matematičnem načiu imamo za pisanje besedila, kot da bi bili v navadnem načinu,
-na voljo ukaz \ltx{\text}. Znotraj ukaza \ltx{\text} lahko ponovno uporabljamo \verb|$| in
-znotraj zopet \ltx{\text}, kolikorkrat želimo.
-Poleg slogov naštetih v razdelku~\ref{sec:font-style},
-imamo na voljo še nekaj posebnih slogov, samo za matematični način.
+\subsection{Različni tipi črk}
+V matematičnem načiu imamo za pisanje besedila na voljo ukaz \ltx{\text}. Znotraj ukaza \ltx{\text}
+lahko ponovno uporabljamo \verb|$| in znotraj zopet \ltx{\text}, kolikorkrat želimo.  Poleg slogov
+naštetih v razdelku~\ref{sec:font-style}, imamo na voljo še nekaj posebnih slogov, samo za
+matematični način.
 
 Glavni so \ltx{\mathcal}, ki ponuja pisane (calligraphic) črke, kot so $\mathcal{LPQHUVI}$,
 \ltx{\mathbb}, ki ponuja dvojne (blackboard bold) črke, kot $\mathbb{NRCZAH}$ in
 \ltx{\mathfrak}, ki ponuja ``fraktur'' verzijo: $\mathfrak{DFOSRL}$ (DFOSRL).
 Paket \verb|mathrsfs| ponuja ``script'' verzijo črk, kot so $\mathscr{IMJSLY}$ (IMJSLY).
 
+Krepke črke v matematičnem načinu dobimo z ukazom \ltx{\boldsymbol} (ki ga je mogoče, kljub imenu,
+uporabiti na več kot enen simbolu hkrati).
+
+Primer: \\
+\ltx{$a \mathbf{a} \textbf{a} \boldsymbol{a}$}:
+$a \mathbf{a} \boldsymbol{a}$ \\
+\ltx{$\alpha \mathbf{\alpha} \boldsymbol{\alpha}$}:
+$\alpha \mathbf{\alpha} \boldsymbol{\alpha}$
+
 \section{Slike in tabele}
 \subsection{Vstavljanje slik}
 
 Za delo s slikami potrebujemo paket \verb|graphicx|. Slike vključimo z ukazom
-\ltx{\includegraphics}, \LaTeX\ pa jih obravnava kot črke enake velikosti, kot je velikost vključene
+\ltx{\includegraphics{slika.png}}, \LaTeX\ pa jih obravnava kot črke enake velikosti, kot je velikost vključene
 slike:
 
 To je stavek, kjer smo na sre\includegraphics{slike/surprise_small.png}dini vstavili sliko.
 
 Velikost slike lahko kontroliramo z neobveznimi argumenti, npr.: \\
 \ltx{\includegraphics[width=0.5\linewidth]{slike/surprise.png}}. \\
-V tem primeru se pogosto uporablja relativne velikosti, kot zgoraj, lahko pa se predpiše tudi
+Pogosto se uporablja relativne velikosti, kot zgoraj, lahko pa se predpiše tudi
 velikost v pikslih ali centimetrih. Višino lahko kontroliramo s parametrom \verb|height|,
 na voljo pa imamo tudi veliko drugih možnosti za zrcaljenje, obrezovanje ipd.
 
@@ -552,7 +573,7 @@ Table naredimo z okoljem \verb|tabular| in jih podobno kot slike \LaTeX\ obravna
 Primer tabele in njene izvorne kode:
 
 \begin{multicols}{2}
-  \begin{minted}{latex}
+  \begin{minted}[linenos]{latex}
     \begin{tabular}{l|l|r||c} \hline
       1.\ naloga & 2.\ naloga & 3.\ naloga
         & Skupaj \\ \hline \hline
@@ -575,16 +596,16 @@ Primer tabele in njene izvorne kode:
   \end{tabular}
 \end{multicols}
 
-Kot pri matrikah, znaki \verb|&| ločujejo stolpce, znaki \verb|\\| pa označujejo nove vrstice.
+Kot pri matrikah znaki \verb|&| ločujejo stolpce, znaki \verb|\\| pa označujejo nove vrstice.
 Ukaz \ltx{\hline} naredi horizontalno črto, vertikalne črte in poravnave stolpcev pa so podane kot
 prvi argument okolja \texttt{tabular}.
 
-Napisati je možno tudi mnogo bolj zapletene tabele, vendar je verjetno lažje uporabi kakšen
+Napisati je možno tudi mnogo bolj zapletene tabele, vendar je verjetno lažje uporabiti kakšen
 generator \LaTeX\ kode, kot npr.~\cite{table-generator}.
 
 \subsection{Slike in tabele med besedilom}
-Ko običajno vstavljamo slike ali tabele, te plavajo med besedilom. Zato imamo na voljo okolji
-\verb|figure| in \verb|table|. Običajna koda za vstavljanje slike je:
+Običajno v dokumentih slike in tabele plavajo med besedilom. Zato imamo na voljo okolji
+\verb|figure| in \verb|table|. Običajna koda za vstavljanje slike v dokument je:
 
 \begin{minted}[linenos]{latex}
 \begin{figure}[h]
@@ -638,9 +659,9 @@ Običajen primer uporabe:
   \label{tab:primer}
 \end{table}
 
-\LaTeX\ pogosto ne postavi slik in tabel tja, kamor bi si jih želeli, ker tam ne
-vidi dovolj prostora. V praksi se med pisanjem dokumenta s tem ne smemo
-obremenjevati, saj se lahko veliko še spremeni, preden končamo. \emph{Na koncu} lahko
+\LaTeX\ pogosto ne postavi slik in tabel tja, kamor bi si jih želeli, ker tam ni
+dovolj prostora. V praksi se med pisanjem dokumenta s tem ne smemo
+obremenjevati, saj se lahko veliko še spremeni, preden končamo. \emph{Ko zaključimo s pisanjem} lahko
 popravimo lokacije s spreminjanem velikosti slik ali tabel, s spreminjanem
 položaja v kodi in, v skrajnem primeru, z morebitnim kontroliranjem prostora z
 \ltx{\vspace}. Če je slik res veliko, lahko tudi vstavimo prelom strani, ki pred
@@ -648,12 +669,20 @@ začetkom nove strani vstavi še vse do zdaj sprocesirane slike in tabele. To
 naredimo z ukazom \ltx{\clearpage} (z razliko od \ltx{\newpage}, ki samo gre na
 novo stran in ne pomaga pri tem, da bi vstavili kakšno sliko več).
 
+Če želimo, da je slika res vstavljena točno na tisti točki, kjer je v kodi,
+lahko uporabimo opcijo \verb|H| iz paketa \texttt{float}. Toda preden se na veliko poslužujete je
+opcije velja opozorilo: če je slika le malo predolga za prejšnjo stran, bo skočila na novo, vsebina
+prejšnje strani pa se bo raztegnila in enakomerno razporedila preostali prazen prostor, s
+potencialno zelo čudno izgledajočim rezultatom. V praksi je bolje uporabljati \verb|[h]| in morda na
+koncu malo popraviti situacijo na roke.
+
 Paket \texttt{caption} omogoča več nadzora nad izgledom in pozicijo slik/tabel
 in pripadajočih napisov.
 
 \section{Sklicevanje in kazala}
+\subsection{Sklicevanje}
 Avtomatko \emph{sklicevanje} v \LaTeX u predstavlja zelo močno orodje. Skličemo se
-lahko na vsak števec -- števcev pa je zelo veliko. \LaTeX ima števce za strani,
+lahko na vsak števec -- števcev pa je zelo veliko. \LaTeX\ ima števce za strani,
 razdelke, podrazdelke, enačbe, slike, tabele, oštevilčene sezname, \dots
 
 Oznako števca naredimo z ukazom \ltx{\label}, na oznako pa se skličemo z ukazom
@@ -662,7 +691,7 @@ spremenjen, za to običajno \ltx{\label} napišemo tik za ukazom, ki poveča kak
 števec. Za slike in tabele tako \ltx{\label} vstavimo tik za \ltx{\cation}, za
 razdelke tik za \ltx{\section}, pri seznamih tik za \ltx{\item}. Dodatno velja
 nenapisan dogovor, da se oznake poimenuje s predpono, ki pove, na kaj se oznaka
-nanaša: oznake za slike, se začnejo s \ltx{\label{fig:oznaka}}, oznake na tabele
+nanaša: oznake za slike se začnejo s \ltx{\label{fig:oznaka}}, oznake na tabele
 s \texttt{tab:}, oznake za razdelke s \texttt{sec:}, oznake za enačbe z
 \texttt{eq:}, oznake za elemente seznamov z \texttt{itm:}, oznake za algoritme z
 \texttt{alg:} in oznake za izseke izvorne kode z \texttt{lst:}. Uporaba teh oblik
@@ -672,7 +701,7 @@ urejevalnik) lažje iščemo med obstoječimi oznakami.
 Na številčene elemente se vedno sklicujemo z \ltx{\ref} ali podobnimi ukazi,
 nikoli s konkretnimi številkami. Pred ukazom \ltx{\ref} moramo tudi običajno
 vstaviti nedeljiv presledek, da se sklic ne prelomi v novo vrstico. Pravilno
-sklicevanje na razdelek o obliki pisave, bi bilo tako: \\
+sklicevanje na razdelek o obliki pisave, bi bilo t\'ako: \\
 \ltx{O obliki pisave smo govorili v razdelku~\ref{sec:font-style}, kjer [se
 nadaljuje]}, \\ kar v dokumentu izgleda kot ``O obliki pisave smo govorili v
 razdelku~\ref{sec:font-style}, kjer [se nadaljuje]''. Pri tem smo tik po ukazu
@@ -686,15 +715,15 @@ lepa.},
 kar v dokumentu izgleda kot: ``Slika~\ref{fig:its-something} na
 strani~\pageref{fig:its-something} je lepa.''
 
-Pri sklicevanju na enačbe, običajno uporabljamo okrogle oklepaje, kot npr.~pri
+Pri sklicevanju na enačbe običajno uporabljamo okrogle oklepaje, kot npr.~pri
 enačbi~\eqref{eq:sample}. Sklic z avtomatskimi oklepaji okrog reference dobimo z
 ukazom \ltx{\eqref}. Sklic malo prej smo dobili z ukazom
-\ltx{\eqref{eq:sample}}, pri čemer smo pred takoj po \ltx{begin{equation}}
-  vstavili \ltx{\label{eq:sample}}.
+\ltx{\eqref{eq:sample}}, pri čemer smo pred takoj po zacetku okolja
+\texttt{equation} vstavili \ltx{\label{eq:sample}}.
 
 \subsection{Kazala}
 Kazalo vsebine vstavimo z ukazom \ltx{\tableofcontents}. Uporabimo lahko še ukaza
-\ltx{\listoffigures} in \ltx{\listoftables}.
+\ltx{\listoffigures} in \ltx{\listoftables} za kazala slik in tabel.
 
 Vnosi v kazalu slik in tabel so opisi pod slikami in tabelami. Če so ti
 predolgi, lahko uporabimo pri ukazu \ltx{caption}, neobvezen argument:
@@ -707,12 +736,12 @@ z \\ \ltx{\addto\captionsslovene{\renewcommand\listfigurename{Kazalo slik}}}.
 
 Več možnosti za oblikovanje kazala ponuja paket \texttt{tocloft}.
 
-\section{Literatura}
+\section{Navajanje literature}
 
 Za literaturo se v večjih dokumentih uporablja sistem
 $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$, ki omogoča
-avtomatsko generiranje seznama referenc s predpisanim stilom (obstaja
-inštitucije ponudijo svojega, tudi FMF). Za kratko navajanje na roko
+avtomatsko generiranje seznama referenc s predpisanim stilom (pogosto
+inštitucije ponudijo svojega, tudi FMF). Za navajanje referenc na roko
 pa imamo na voljo okolje \texttt{thebibliography}.
 
 Okolje se uporablja takole:
@@ -726,6 +755,7 @@ Okolje se uporablja takole:
 \end{thebibliography}
 \end{minted}
 
+Številka \verb|99| pomeni, da bomo imeli največ dvomestne številke referenc.
 Primer uporabe lahko vidite na koncu tega dokumenta.
 Na literaturo se sklicujemo z ukazom \ltx{\cite{oznaka}}.
 Kot pri referencah, je tudi tukaj prej pravilno vstaviti nedeljiv presledek
@@ -739,6 +769,7 @@ Za pisanje algoritmov priporočam paketa \texttt{algorithm} in
 \texttt{algorithmicx} (potrebujete oba). Za vključevanje in barvanje izvorne
 kode (kot v tem dokumentu) je uporabljen paket \texttt{minted}.
 Za več stolpcev se lahko uporabi paket \texttt{multicols}.
+Za risanje se uporablja \texttt{paket} tikz, za diagrame pa \texttt{xy}.
 
 \begin{thebibliography}{99}
   \bibitem{latex} Lamport, Leslie. \textit{LaTeX: A Document
