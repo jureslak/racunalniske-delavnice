@@ -549,6 +549,25 @@ $a \mathbf{a} \boldsymbol{a}$ \\
 \ltx{$\alpha \mathbf{\alpha} \boldsymbol{\alpha}$}:
 $\alpha \mathbf{\alpha} \boldsymbol{\alpha}$
 
+\subsection{Lastni ukazi}
+
+V \LaTeX u lahko definiramo tudi lastne ukaze, z ukazom \ltx{\newcommand{\ukaz}{nekaj kar želimo
+narediti}}. S tem lahko okrajšamo nekatere dolge ponavljajoče skupine ukazov, če npr.\ zelo pogosto
+uporabljamo \ltx{\mathsf{T}} za transponiranje, lahko to okrajšamo v \ltx{\T} z ukazom
+\ltx{\newcommand{\T}{\mathsf{T}}}. V tem primeru pišemo \ltx{$A^\T$}, da dobimo $A^\mathsf{T}$.
+
+Definiramo lahko tudi ukaze, ki sprejmejo argumente. Poglejmo si to kar na primeru: \\
+\ltx{\newcommand{\dpar}[2]{\frac{\partial #1}{\partial #2}}} definira ukaz \ltx{\dpar},
+ki sprejme 2 argumenta, na katera se sklicujemo z \verb|#1| in \verb|#2|. Uporabimo ga kot
+\ltx{\dpar{x}{t}}, kar se med prevajanjem spremeni v \ltx{\frac{\partial x}{\partial t}},
+kar se prikaže kot $\frac{\partial x}{\partial t}$.
+
+Ne bojite se uporabljati novih ukazov,
+saj lahko precej izboljšajo berljivost kode. Na prvo vrsto ukazov glejte kot na neke vrste
+spremenljivke, na drugo vrsto pa kot na funkcije in jih uporabljajte podobno kot bi jih v drugih
+programskih jezikih: če se neka stvar večkrat ponavlja, jo shrani v spremenljivko ali naredi
+funkcijo.
+
 \section{Slike in tabele}
 \subsection{Vstavljanje slik}
 
@@ -770,6 +789,8 @@ Za pisanje algoritmov priporočam paketa \texttt{algorithm} in
 kode (kot v tem dokumentu) je uporabljen paket \texttt{minted}.
 Za več stolpcev se lahko uporabi paket \texttt{multicols}.
 Za risanje se uporablja \texttt{paket} tikz, za diagrame pa \texttt{xy}.
+
+\newpage
 
 \begin{thebibliography}{99}
   \bibitem{latex} Lamport, Leslie. \textit{LaTeX: A Document
