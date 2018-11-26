@@ -1,6 +1,7 @@
 import binary5
 import unittest
 
+
 class BinaryTestCase(unittest.TestCase):
     """Tests for binary5 module."""
 
@@ -39,6 +40,7 @@ class BinaryTestCase(unittest.TestCase):
                                binary5.to_binary, 3+5j)
         self.assertRaisesRegex(ValueError, "Only integer values are supported.",
                                binary5.to_binary, [-4])
+
 
 if __name__ == '__main__':
     unittest.main()

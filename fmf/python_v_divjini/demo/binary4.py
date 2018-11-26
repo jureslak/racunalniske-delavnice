@@ -1,5 +1,6 @@
 """A module for handling binary numbers as strings."""
 
+
 def to_binary(n):
     """Converts a given integer to binary.
 
@@ -13,14 +14,17 @@ def to_binary(n):
     '1111111111'
     """
 
-    if n == 0: return '0'
-    if n < 0: return '-' + to_binary(-n)
+    if n == 0:
+        return '0'
+    if n < 0:
+        return '-' + to_binary(-n)
 
     s = []
     while n > 0:
         s.append(n % 2)
         n //= 2
     return ''.join(map(str, reversed(s)))
+
 
 if __name__ == '__main__':
     import doctest

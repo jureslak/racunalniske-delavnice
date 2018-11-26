@@ -1,6 +1,7 @@
 from math import factorial
 import unittest
 
+
 class TestFactorial(unittest.TestCase):
 
     def test_zero(self):
@@ -19,6 +20,7 @@ class TestFactorial(unittest.TestCase):
         self.assertRaises(TypeError, factorial, '23')
         self.assertRaises(TypeError, factorial, [12])
         self.assertRaises(OverflowError, factorial, 1348123481273489123493423)
+
 
 if __name__ == '__main__':
     unittest.main()

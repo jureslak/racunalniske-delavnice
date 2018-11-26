@@ -11,6 +11,6 @@ ali
 ```
 git clone git@github.com:jureslak/racunalniske-delavnice.git
 ```
-ali s klikon na gumb "Dowlnoad ZIP".
+ali s klikon na gumb "Download ZIP".
 
 Jure Slak

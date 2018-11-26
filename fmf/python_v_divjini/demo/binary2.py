@@ -1,5 +1,6 @@
 """A module for handling binary numbers as strings."""
 
+
 def to_binary(n):
     """Converts a given integer to binary."""
     s = []
