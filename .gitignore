@@ -56,6 +56,7 @@ _build/
 
 # Pycharm
 .idea/
+venv/
 
 # PyBuilder
 target/
@@ -65,3 +66,6 @@ target/
 _minted*
 *.log
 *.toc
+
+*.o
+*.a
